@@ -64,8 +64,28 @@
 			<label for="check1C"><input type="checkbox" name="survivalNeeds[]" id="check1C" value="shelter">Shelter</label><br>
 			<label for="check1D"><input type="checkbox" name="survivalNeeds[]" id="check1D" value="tacos">Tacos</label><br>
 			</li>
+			<li>Are you alive?<br>
+			<select name="userAlive[]" multiple>
+				<option value="1">Nope</option>
+				<option value="2">Yes</option>
+				<option value="3">That depends</option>
+				<option value="4">Sure, why not?</option>
+			</select>
+			</li>
+		</ol>
 		<input type="submit">
 
+	</form>
+
+	<h2>Select Testing</h2>
+	<form>
+		<label for="canUserRead">Can you read this?</label>
+		<select name="canUserRead" id="canUserRead">
+			<option value="-1">---- Choose One ----</option>
+			<option value="1">Yes</option>
+			<option value="0">No</option>
+		</select>
+		<input type="submit">
 	</form>
 </body>
 </html>
