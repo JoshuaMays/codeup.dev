@@ -65,12 +65,12 @@
 			<label for="check1D"><input type="checkbox" name="survivalNeeds[]" id="check1D" value="tacos">Tacos</label><br>
 			</li>
 			<li>Are you alive?<br>
-			<select name="userAlive[]" multiple>
-				<option value="1">Nope</option>
-				<option value="2">Yes</option>
-				<option value="3">That depends</option>
-				<option value="4">Sure, why not?</option>
-			</select>
+				<select name="userAlive[]" multiple>
+					<option value="1">Nope</option>
+					<option value="2">Yes</option>
+					<option value="3">That depends</option>
+					<option value="4">Sure, why not?</option>
+				</select>
 			</li>
 		</ol>
 		<input type="submit">
