@@ -78,7 +78,7 @@
 	</form>
 
 	<h2>Select Testing</h2>
-	<form>
+	<form method="POST" action="/my_first_form.php">
 		<label for="canUserRead">Can you read this?</label>
 		<select name="canUserRead" id="canUserRead">
 			<option value="-1">---- Choose One ----</option>
