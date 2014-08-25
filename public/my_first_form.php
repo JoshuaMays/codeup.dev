@@ -40,7 +40,7 @@
 		</p>
 		<p>
 			<label for="body">Body: </label>
-			<textarea id="body" name="body"></textarea>
+			<textarea id="body" name="body" placeholder="Email Body..."></textarea>
 		</p>
 		<input type="submit" />
 	</form>
