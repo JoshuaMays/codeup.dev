@@ -45,25 +45,25 @@
 	</form>
 	<h2>Multiple Choice Test</h2>
 	<form method="POST" action="/my_first_form.php">
-		
-		<p>What color is the sky?</p>
-		<label for="radio1A"><input type="radio" name="radio1" id="radio1A" value="blue">Blue</label><br>
-		<label for="radio1B"><input type="radio" name="radio1" id="radio1B" value="green">Green</label><br>
-		<label for="radio1C"><input type="radio" name="radio1" id="radio1C" value="orange">Orange</label><br>
-		<label for="radio1D"><input type="radio" name="radio1" id="radio1D" value="purple">Purple</label><br>
-			
-		<p>How old are you?</p>
-		<label for="radio2A"><input type="radio" name="radio2" id="radio2A" value="10-">Less than 10</label><br>
-		<label for="radio2B"><input type="radio" name="radio2" id="radio2B" value="11-17">11-17</label><br>				
-		<label for="radio2C"><input type="radio" name="radio2" id="radio2C" value="18-20">18-20</label><br>
-		<label for="radio2D"><input type="radio" name="radio2" id="radio2D" value="21+">21+</label><br>
-			
-		<p>What do you need to survive?</p>
-		<label for="check1A"><input type="checkbox" name="check1[]" id="check1A" value="air">Air</label><br>
-		<label for="check1B"><input type="checkbox" name="check1[]" id="check1B" value="water">Water</label><br>
-		<label for="check1C"><input type="checkbox" name="check1[]" id="check1C" value="shelter">Shelter</label><br>
-		<label for="check1D"><input type="checkbox" name="check1[]" id="check1D" value="tacos">Tacos</label><br>
-			
+		<ol>	
+			<li>What color is the sky?<br>
+			<label for="radio1A"><input type="radio" name="colorOfSky" id="radio1A" value="blue">Blue</label><br>
+			<label for="radio1B"><input type="radio" name="colorOfSky" id="radio1B" value="green">Green</label><br>
+			<label for="radio1C"><input type="radio" name="colorOfSky" id="radio1C" value="orange">Orange</label><br>
+			<label for="radio1D"><input type="radio" name="colorOfSky" id="radio1D" value="purple">Purple</label><br>
+			</li><br>
+			<li>How old are you?<br>
+			<label for="radio2A"><input type="radio" name="ageOfUser" id="radio2A" value="10-">Less than 10</label><br>
+			<label for="radio2B"><input type="radio" name="ageOfUser" id="radio2B" value="11-17">11-17</label><br>				
+			<label for="radio2C"><input type="radio" name="ageOfUser" id="radio2C" value="18-20">18-20</label><br>
+			<label for="radio2D"><input type="radio" name="ageOfUser" id="radio2D" value="21+">21+</label><br>
+			</li><br>
+			<li>What do you need to survive?<br>
+			<label for="check1A"><input type="checkbox" name="survivalNeeds[]" id="check1A" value="air">Air</label><br>
+			<label for="check1B"><input type="checkbox" name="survivalNeeds[]" id="check1B" value="water">Water</label><br>
+			<label for="check1C"><input type="checkbox" name="survivalNeeds[]" id="check1C" value="shelter">Shelter</label><br>
+			<label for="check1D"><input type="checkbox" name="survivalNeeds[]" id="check1D" value="tacos">Tacos</label><br>
+			</li>
 		<input type="submit">
 
 	</form>
