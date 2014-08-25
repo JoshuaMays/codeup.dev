@@ -28,11 +28,11 @@
 	<form method="POST" action="/my_first_form.php">
 		<p>
 			<label for="to">To: </label>
-			<input type="email" id="to" name="to" />
+			<input type="email" id="to" name="to" placeholder="test@example.com" />
 		</p>
 		<p>
 			<label for="from">From: </label>
-			<input type="email" id="from" name="from" />
+			<input type="email" id="from" name="from" placeholder="test@example.com" />
 		</p>
 		<p>
 			<label for="subject">Subject: </label>
