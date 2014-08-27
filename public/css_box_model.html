@@ -1,8 +1,9 @@
 <html>
 <head>
 	<title>Box Model Exercise</title>
-	<style>
+	<style rel="stylesheet">
 		div {
+
 			border: 1px solid #000;
 			height: 50px;
 			width: 150px;
@@ -13,28 +14,100 @@
 		}
 
 		#red {
+			-webkit-animation: changeRed 4s;
+			-webkit-animation-timing-function: linear;
+			-webkit-animation-iteration-count: infinite;
+			-webkit-animation-direction: alternate;
+			-webkit-animation-play-state: running;
+			animation: changeRed 4s;				
 			background-color:red;		
 		}
-		#orange {
+		#orange {			
+			-webkit-animation: growMarginOrange 4s;
+			-webkit-animation-timing-function: linear;
+			-webkit-animation-iteration-count: infinite;
+			-webkit-animation-direction: alternate;
+			-webkit-animation-play-state: running;
+			animation: growMarginOrange 4s;			
 			background-color:orange;
-			margin-left:30px;
+			/*margin-left:30px;*/
 		}
+
 		#yellow {
+			-webkit-animation: growMarginYellow 4s;
+			-webkit-animation-timing-function: linear;
+			-webkit-animation-iteration-count: infinite;
+			-webkit-animation-direction: alternate;
+			-webkit-animation-play-state: running;
+			animation: growMarginYellow 4s;		
 			background-color:yellow;	
-			margin-left:60px;
+			/*margin-left:60px;*/
 		}
 		#green {
+			-webkit-animation: growMarginGreen 4s;
+			-webkit-animation-timing-function: linear;
+			-webkit-animation-iteration-count: infinite;
+			-webkit-animation-direction: alternate;
+			-webkit-animation-play-state: running;
+			animation: growMarginGreen 4s;	
 			background-color:green;
-			margin-left:90px;
+			/*margin-left:90px;*/
 		}
 		#blue {
+			-webkit-animation: growMarginBlue 4s;
+			-webkit-animation-timing-function: linear;
+			-webkit-animation-iteration-count: infinite;
+			-webkit-animation-direction: alternate;
+			-webkit-animation-play-state: running;
+			animation: growMarginBlue 4s;				
 			background-color:blue;
-			margin-left:120px;
+			/*margin-left:120px;*/
 		}
-		#pink {
-			background-color:#DF8BF0;
-			margin-left:150px;
+		#violet {
+			-webkit-animation: growMarginViolet 4s;
+			-webkit-animation-timing-function: linear;
+			-webkit-animation-iteration-count: infinite;
+			-webkit-animation-direction: alternate;
+			-webkit-animation-play-state: running;
+			animation: growMarginViolet 4s;				
+			background-color:violet;
+			/*margin-left:150px;*/
 		}
+		@-webkit-keyframes changeRed {
+			0% { background-color:#fff; }
+			100% { background-color:red; }
+		}
+
+		@-webkit-keyframes growMarginOrange {
+			0%   {margin-left: 0px; background-color:#fff;}
+    		25%  {margin-left: 10px;}
+    		50%  {margin-left: 20px;}
+    		100% {margin-left: 30px; background-color:orange;}
+		}
+		@-webkit-keyframes growMarginYellow {
+			0%   {margin-left: 0px; background-color:#fff;}
+    		25%  {margin-left: 20px;}
+    		50%  {margin-left: 40px;}
+    		100% {margin-left: 60px; background-color:yellow;}
+		}		
+		@-webkit-keyframes growMarginGreen {
+			0%   {margin-left: 0px; background-color:#fff;}
+    		25%  {margin-left: 30px;}
+    		50%  {margin-left: 60px;}
+    		100% {margin-left: 90px; background-color:green;}
+		}
+		@-webkit-keyframes growMarginBlue {
+			0%   {margin-left: 0px; background-color:#fff;}
+    		25%  {margin-left: 40px;}
+    		50%  {margin-left: 80px;}
+    		100% {margin-left: 120px; background-color:blue;}
+		}		
+		@-webkit-keyframes growMarginViolet {
+			0%   {margin-left: 0px; background-color:#fff;}
+    		25%  {margin-left: 50px;}
+    		50%  {margin-left: 100px;}
+    		100% {margin-left: 150px; background-color:violet;}
+		}		
 	</style>
 </head>
 <body>
@@ -45,7 +118,7 @@
 	<div id="yellow">570-590 nm</div>
 	<div id="green">495-570 nm</div>
 	<div id="blue">450-495 nm</div>
-	<div id="pink">380-450 nm</div>				
+	<div id="violet">380-450 nm</div>				
 
 </body>
 </html>
