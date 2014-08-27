@@ -1,0 +1,77 @@
+<html>
+<head>
+	<title>Positioning Exercise</title>
+	<style rel="stylesheet">
+		div {
+			width: 50%;
+			margin: 10px auto;
+		}
+		#rectwrap {
+			width:420px;
+			margin: 0px auto;
+		}
+
+		.rect {
+			border: 1px solid #000;
+			height: 50px;
+			width: 50px;
+			padding: 10px 10px;
+			color: #fff;
+			margin: 50px 50px 0px 0px;
+			font-weight: bold;
+			position: relative;
+		}
+		#red {
+			background-color: red;
+		}
+		#orange {
+			background-color: orange;
+		}
+		#yellow {
+			background-color: yellow;
+		}
+		#green {
+			background-color: green;
+		}
+		#blue {
+			background-color: blue;
+		}
+		#violet {
+			background-color: violet;
+		}
+		.arrow {
+			position: absolute;
+			top:-40px;
+			right:-40px;
+		}
+		#coderibbon {
+			position: absolute;
+			top:0;
+			right:0;
+		}
+		.left {
+			float: left;
+		}
+		.clear {
+			clear:both;
+		}
+		h1 {
+			text-align: center;
+		}
+		</style>
+</head>
+<body>
+	<img id="coderibbon" src="/img/codeup-ribbon.png" alt="codeup ribbon">
+	<div>
+		<h1><a href="http://en.wikipedia.org/wiki/Visible_spectrum" alt="Visible Spectrum wiki entry" target="_blank">Visible Spectrum Wavelengths</a></h1>
+		<div id="rectwrap">
+			<div id="red" class="left rect"><img class="arrow" src="/img/codeup-arrow.png" alt="codeup arrow">620-750 nm</div>
+			<div id="orange" class="left rect"><img class="arrow" src="/img/codeup-arrow.png" alt="codeup arrow">590-620 nm</div>
+			<div id="yellow" class="left rect"><img class="arrow" src="/img/codeup-arrow.png" alt="codeup arrow">570-590 nm</div>
+			<div id="green" class="left rect clear"><img class="arrow" src="/img/codeup-arrow.png" alt="codeup arrow">495-570 nm</div>
+			<div id="blue" class="left rect"><img class="arrow" src="/img/codeup-arrow.png" alt="codeup arrow">450-495 nm</div>
+			<div id="violet" class="left rect"><img class="arrow" src="/img/codeup-arrow.png" alt="codeup arrow">380-450 nm</div>
+		</div>
+	</div>
+</body>
+</html>
