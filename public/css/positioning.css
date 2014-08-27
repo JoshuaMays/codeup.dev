@@ -7,7 +7,7 @@
 	margin: 0px auto;
 }
 
-.rect {
+.square {
 	border: 1px solid #000;
 	height: 50px;
 	width: 50px;
@@ -17,6 +17,7 @@
 	font-weight: bold;
 	position: relative;
 }
+
 #red {
 	background-color: red;
 }
