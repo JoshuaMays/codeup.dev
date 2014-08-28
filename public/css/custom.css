@@ -7,6 +7,8 @@ html, body {
 }
 body {
     padding-top: 75px;
+    font-family: 'Fira Sans', sans-serif;
+    font-weight: 300;
 }
 /* Wrapper, pushes down footer */
 #wrap {
@@ -34,7 +36,9 @@ code {
   font-size: 80%;
 }
 
-span.glyphicon {
+i.fa {
+    min-width:15px;
+    margin-left: 10px;
     margin-right: 10px;
 }
 
@@ -66,4 +70,16 @@ nav.navbar {
     background: -ms-linear-gradient(top, rgba(183,222,237,1) 0%, rgba(183,222,237,1) 0%, rgba(113,206,239,1) 68%, rgba(33,180,226,1) 99%, rgba(33,180,226,1) 100%);
     background: linear-gradient(to bottom, rgba(183,222,237,1) 0%, rgba(183,222,237,1) 0%, rgba(113,206,239,1) 68%, rgba(33,180,226,1) 99%, rgba(33,180,226,1) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b7deed', endColorstr='#21b4e2', GradientType=0 );
+}
+address .a{
+    color: #666;
+}
+
+.navbar-brand {
+    font-family: 'Fira Sans', sans-serif;
+    font-style: italic;
+}
+
+.page-header {
+    font-family: 'Fira Sans', sans-serif;
 }
