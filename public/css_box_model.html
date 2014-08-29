@@ -2,8 +2,8 @@
 <head>
 	<title>Box Model Exercise</title>
 	<style rel="stylesheet">
-		div {
-
+		/* Shared styles for all rectangles */
+		.rect {
 			border: 1px solid #000;
 			height: 50px;
 			width: 150px;
@@ -11,114 +11,121 @@
 			color: #fff;
 			margin-bottom:10px;
 			font-weight: bold;
+			background-color:#fff;
 		}
 
 		#red {
-			-webkit-animation: changeRed 4s;
+			/* Call animation function for chrome/safari */
+			-webkit-animation: changeRed 4s; 
 			-webkit-animation-timing-function: linear;
 			-webkit-animation-iteration-count: infinite;
 			-webkit-animation-direction: alternate;
 			-webkit-animation-play-state: running;
-			animation: changeRed 4s;				
-			background-color:red;		
+			animation: changeRed 4s;
 		}
-		#orange {			
+		#orange {
+			/* Call animation function for chrome/safari */
 			-webkit-animation: growMarginOrange 4s;
 			-webkit-animation-timing-function: linear;
 			-webkit-animation-iteration-count: infinite;
 			-webkit-animation-direction: alternate;
 			-webkit-animation-play-state: running;
-			animation: growMarginOrange 4s;			
-			background-color:orange;
-			/*margin-left:30px;*/
+			/* Standard call to animation function */
+			animation: growMarginOrange 4s;
 		}
 
 		#yellow {
+			/* Call animation function for chrome/safari */
 			-webkit-animation: growMarginYellow 4s;
 			-webkit-animation-timing-function: linear;
 			-webkit-animation-iteration-count: infinite;
 			-webkit-animation-direction: alternate;
 			-webkit-animation-play-state: running;
-			animation: growMarginYellow 4s;		
-			background-color:yellow;	
-			/*margin-left:60px;*/
+			/* Standard call to animation function */
+			animation: growMarginYellow 4s;
 		}
 		#green {
+			/* Call animation function for chrome/safari */
 			-webkit-animation: growMarginGreen 4s;
 			-webkit-animation-timing-function: linear;
 			-webkit-animation-iteration-count: infinite;
 			-webkit-animation-direction: alternate;
 			-webkit-animation-play-state: running;
-			animation: growMarginGreen 4s;	
-			background-color:green;
-			/*margin-left:90px;*/
+			/* Standard call to animation function */
+			animation: growMarginGreen 4s;
 		}
 		#blue {
+			/* Call animation function for chrome/safari */
 			-webkit-animation: growMarginBlue 4s;
 			-webkit-animation-timing-function: linear;
 			-webkit-animation-iteration-count: infinite;
 			-webkit-animation-direction: alternate;
 			-webkit-animation-play-state: running;
-			animation: growMarginBlue 4s;				
-			background-color:blue;
-			/*margin-left:120px;*/
+			/* Standard call to animation function */
+			animation: growMarginBlue 4s;
 		}
 		#violet {
+			/* Call animation function for chrome/safari */
 			-webkit-animation: growMarginViolet 4s;
 			-webkit-animation-timing-function: linear;
 			-webkit-animation-iteration-count: infinite;
 			-webkit-animation-direction: alternate;
 			-webkit-animation-play-state: running;
-			animation: growMarginViolet 4s;				
-			background-color:violet;
-			/*margin-left:150px;*/
+			/* Standard call to animation function */
+			animation: growMarginViolet 4s;
 		}
 		@-webkit-keyframes changeRed {
 			0% { background-color:#fff; }
+			/* fade shape color to red */
 			100% { background-color:red; }
 		}
 
 		@-webkit-keyframes growMarginOrange {
-			0%   {margin-left: 0px; background-color:#fff;}
-    		25%  {margin-left: 10px;}
-    		50%  {margin-left: 20px;}
-    		100% {margin-left: 30px; background-color:orange;}
+			0%   {margin-left: 0px;}
+			25%  {margin-left: 10px;}
+			50%  {margin-left: 20px;}
+			/* Final margin size, fade shape color to orange */
+			100% {margin-left: 30px; background-color:orange;}
 		}
 		@-webkit-keyframes growMarginYellow {
-			0%   {margin-left: 0px; background-color:#fff;}
-    		25%  {margin-left: 20px;}
-    		50%  {margin-left: 40px;}
-    		100% {margin-left: 60px; background-color:yellow;}
-		}		
+			0%   {margin-left: 0px;}
+			25%  {margin-left: 20px;}
+			50%  {margin-left: 40px;}
+			/* Final margin size, fade shape color to yellow */
+			100% {margin-left: 60px; background-color:yellow;}
+		}
 		@-webkit-keyframes growMarginGreen {
-			0%   {margin-left: 0px; background-color:#fff;}
-    		25%  {margin-left: 30px;}
-    		50%  {margin-left: 60px;}
-    		100% {margin-left: 90px; background-color:green;}
+			0%   {margin-left: 0px;}
+			25%  {margin-left: 30px;}
+			50%  {margin-left: 60px;}
+			/* Final margin size, fade shape color to green */
+			100% {margin-left: 90px; background-color:green;}
 		}
 		@-webkit-keyframes growMarginBlue {
-			0%   {margin-left: 0px; background-color:#fff;}
-    		25%  {margin-left: 40px;}
-    		50%  {margin-left: 80px;}
-    		100% {margin-left: 120px; background-color:blue;}
+			0%   {margin-left: 0px;}
+			25%  {margin-left: 40px;}
+			50%  {margin-left: 80px;}
+			/* Final margin size, fade shape color to blue */
+			100% {margin-left: 120px; background-color:blue;}
 		}		
 		@-webkit-keyframes growMarginViolet {
-			0%   {margin-left: 0px; background-color:#fff;}
-    		25%  {margin-left: 50px;}
-    		50%  {margin-left: 100px;}
-    		100% {margin-left: 150px; background-color:violet;}
-		}		
+			0%   {margin-left: 0px;}
+			25%  {margin-left: 50px;}
+			50%  {margin-left: 100px;}
+			/* Final margin size, fade shape color to violet */
+			100% {margin-left: 150px; background-color:violet;}
+		}
 	</style>
 </head>
 <body>
 	<h1><a href="http://en.wikipedia.org/wiki/Visible_spectrum" alt="Visible Spectrum wiki entry" target="_blank">Visible Spectrum Wavelengths</a></h1>
 
-	<div id="red">620-750 nm</div>
-	<div id="orange">590-620 nm</div>
-	<div id="yellow">570-590 nm</div>
-	<div id="green">495-570 nm</div>
-	<div id="blue">450-495 nm</div>
-	<div id="violet">380-450 nm</div>				
+	<div id="red" class="rect">620-750 nm</div>
+	<div id="orange" class="rect">590-620 nm</div>
+	<div id="yellow" class="rect">570-590 nm</div>
+	<div id="green" class="rect">495-570 nm</div>
+	<div id="blue" class="rect">450-495 nm</div>
+	<div id="violet" class="rect">380-450 nm</div>				
 
 </body>
 </html>
