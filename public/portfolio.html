@@ -9,16 +9,14 @@
   <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css">
   <!-- Font Awesome CSS-->
   <link href="/fontawesome/css/font-awesome.min.css" rel="stylesheet">
+  <!-- Google Fonts - Fira Sans -->
+  <link href='http://fonts.googleapis.com/css?family=Fira+Sans:300,500,700,500italic' rel='stylesheet' type='text/css'>
   <!-- Custom CSS -->
   <link rel="stylesheet" type="text/css" href="/css/custom.css">
-  <!-- jQuery 2.1.1 -->
-  <script src="/bootstrap/js/jquery2.1.1.js"></script>
-  <!-- Bootstrap JS -->
-  <script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script>
   
 </head>
 <body>
-  <div id="wrap">
+  <div id="wrap"><!-- Begin Page Wrap -->
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
       <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -28,164 +26,186 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="/">j.mays</a>
+          </button>
+          <!-- HEADER BRAND -->
+          <a class="navbar-brand italic" href="/">j.mays</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="/portfolio.html">Portfolio</a></li>
-                <li><a href="/resume.html">Resume</a></li>
-                <li><a href="/blog.html">Blog</a></li>
-            </ul>
+          <!-- Nav List -->
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="/portfolio.html">Portfolio</a></li>
+            <li><a href="/resume.html">Resume</a></li>
+            <li><a href="/blog.html">Blog</a></li>
+          </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav>
     <!-- Begin page content -->
     <div class="container">
-        <div class="row">
-          <div class="col-sm-4 col-md-4">
-            <div class="thumbnail">
-              <img src="/img/holder.svg" alt="...">
-              <div class="caption">
-                <h3 class="text-uppercase">Project 1</h3>
-                <p>These are words to describe the project. blah</p>
-                <!-- split button -->
-                <div class="btn-group">
-                  <button type="button" class="btn btn-info">VIEW</button>
-                  <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
-                    <span class="caret"></span>
-                    <span class="sr-only">Toggle Dropdown</span>
-                  </button>
-                  <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">View Project</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">View Source Code</a></li>
-                  </ul>
-                </div> <!-- end split button -->
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-4 col-md-4">
-            <div class="thumbnail">
-              <img src="/img/holder.svg" alt="...">
-              <div class="caption">
-                <h3 class="text-uppercase">Project 2</h3>
-                <p>These are words to describe the project. blah</p>
-                <!-- split button -->
-                <div class="btn-group">
-                  <button type="button" class="btn btn-info">VIEW</button>
-                  <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
-                    <span class="caret"></span>
-                    <span class="sr-only">Toggle Dropdown</span>
-                  </button>
-                  <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">View Project</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">View Source Code</a></li>
-                  </ul>
-                </div> <!-- end split button -->
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-4 col-md-4">
-            <div class="thumbnail">
-              <img src="/img/holder.svg" alt="...">
-              <div class="caption">
-                <h3 class="text-uppercase">Project 3</h3>
-                <p>These are words to describe the project. blah</p>
-                <!-- split button -->
-                <div class="btn-group">
-                  <button type="button" class="btn btn-info">VIEW</button>
-                  <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
-                    <span class="caret"></span>
-                    <span class="sr-only">Toggle Dropdown</span>
-                  </button>
-                  <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">View Project</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">View Source Code</a></li>
-                  </ul>
-                </div> <!-- end split button -->
-              </div>
+      <!-- Begin 1st row of portfolio thumbnails -->
+      <div class="row">
+        <!-- 3 thumbnails per row when not on small screen -->
+        <div class="col-sm-4 col-md-4">
+          <div class="thumbnail">
+            <img src="/img/holder.svg" alt="...">
+            <div class="caption">
+              <h3 class="text-uppercase">Project 1</h3>
+              <p>These are words to describe the project. blah</p>
+              <!-- split button -->
+              <div class="btn-group">
+                <button type="button" class="btn btn-info">VIEW</button>
+                <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+                  <span class="caret"></span>
+                  <span class="sr-only">Toggle Dropdown</span>
+                </button>
+                <!-- Drop nav menu for section of portfolio item to open to -->
+                <ul class="dropdown-menu" role="menu">
+                  <li><a href="#">View Project</a></li>
+                  <li class="divider"></li>
+                  <li><a href="#">View Source Code</a></li>
+                </ul>
+              </div> <!-- end split button -->
             </div>
           </div>
         </div>
-        <div class="jumbotron">
-            <div class="container">
-                <h1 class="text-center">IM A COMPUTER</h1>
-            </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-4 col-md-4">
-            <div class="thumbnail">
-              <img src="/img/holder.svg" alt="...">
-              <div class="caption">
-                <h3 class="text-uppercase">Project 4</h3>
-                <p>These are words to describe the project. blah</p>
-                <!-- split button -->
-                <div class="btn-group dropup">
-                  <button type="button" class="btn btn-info">VIEW</button>
-                  <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
-                    <span class="caret"></span>
-                    <span class="sr-only">Toggle Dropdown</span>
-                  </button>
-                  <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">View Project</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">View Source Code</a></li>
-                  </ul>
-                </div> <!-- end split button -->
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-4 col-md-4">
-            <div class="thumbnail">
-              <img src="/img/holder.svg" alt="...">
-              <div class="caption">
-                <h3 class="text-uppercase">Project 5</h3>
-                <p>These are words to describe the project. blah</p>
-                <!-- split button -->
-                <div class="btn-group dropup">
-                  <button type="button" class="btn btn-info">VIEW</button>
-                  <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
-                    <span class="caret"></span>
-                    <span class="sr-only">Toggle Dropdown</span>
-                  </button>
-                  <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">View Project</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">View Source Code</a></li>
-                  </ul>
-                </div> <!-- end split button -->
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-4 col-md-4">
-            <div class="thumbnail">
-              <img src="/img/holder.svg" alt="...">
-              <div class="caption">
-                <h3 class="text-uppercase">Project 6</h3>
-                <p>These are words to describe the project. blah</p>
-                <!-- split button -->
-                <div class="btn-group dropup box-shadow">
-                  <button type="button" class="btn btn-info">VIEW</button>
-                  <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
-                    <span class="caret"></span>
-                    <span class="sr-only">Toggle Dropdown</span>
-                  </button>
-                  <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">View Project</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">View Source Code</a></li>
-                  </ul>
-                </div> <!-- end split button -->
-              </div>
+        <!-- 3 thumbnails per row when not on small screen -->
+        <div class="col-sm-4 col-md-4">
+          <div class="thumbnail">
+            <img src="/img/holder.svg" alt="...">
+            <div class="caption">
+              <h3 class="text-uppercase">Project 2</h3>
+              <p>These are words to describe the project. blah</p>
+              <!-- split button -->
+              <div class="btn-group">
+                <button type="button" class="btn btn-info">VIEW</button>
+                <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+                  <span class="caret"></span>
+                  <span class="sr-only">Toggle Dropdown</span>
+                </button>
+                <!-- Drop nav menu for section of portfolio item to open to -->
+                <ul class="dropdown-menu" role="menu">
+                  <li><a href="#">View Project</a></li>
+                  <li class="divider"></li>
+                  <li><a href="#">View Source Code</a></li>
+                </ul>
+              </div> <!-- end split button -->
             </div>
           </div>
         </div>
-    </div>
-  </div>
+        <!-- 3 thumbnails per row when not on small screen -->
+        <div class="col-sm-4 col-md-4">
+          <div class="thumbnail">
+            <img src="/img/holder.svg" alt="...">
+            <div class="caption">
+              <h3 class="text-uppercase">Project 3</h3>
+              <p>These are words to describe the project. blah</p>
+              <!-- split button -->
+              <div class="btn-group">
+                <button type="button" class="btn btn-info">VIEW</button>
+                <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+                  <span class="caret"></span>
+                  <span class="sr-only">Toggle Dropdown</span>
+                </button>
+                <!-- Drop nav menu for section of portfolio item to open to -->
+                <ul class="dropdown-menu" role="menu">
+                  <li><a href="#">View Project</a></li>
+                  <li class="divider"></li>
+                  <li><a href="#">View Source Code</a></li>
+                </ul>
+              </div> <!-- end split button -->
+            </div>
+          </div>
+        </div>
+      </div><!-- End 1st row of portfolio thumbnails -->
+      <div class="jumbotron"><!-- Begin jumbotron between rows -->
+        <div class="container">
+          <h1 class="text-center">IM A COMPUTER</h1>
+        </div>
+      </div><!-- End jumbotron -->
+      <!-- Begin 2nd row of portfolio thumbnails -->
+      <div class="row">
+        <!-- 3 thumbnails per row when not on small screen -->
+        <div class="col-sm-4 col-md-4">
+          <div class="thumbnail">
+            <img src="/img/holder.svg" alt="...">
+            <div class="caption">
+              <h3 class="text-uppercase">Project 4</h3>
+              <p>These are words to describe the project. blah</p>
+              <!-- split button -->
+              <div class="btn-group dropup">
+                <button type="button" class="btn btn-info">VIEW</button>
+                <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+                  <span class="caret"></span>
+                  <span class="sr-only">Toggle Dropdown</span>
+                </button>
+                <!-- Drop nav menu for section of portfolio item to open to -->
+                <ul class="dropdown-menu" role="menu">
+                  <li><a href="#">View Project</a></li>
+                  <li class="divider"></li>
+                  <li><a href="#">View Source Code</a></li>
+                </ul>
+              </div> <!-- end split button -->
+            </div>
+          </div>
+        </div>
+        <!-- 3 thumbnails per row when not on small screen -->
+        <div class="col-sm-4 col-md-4">
+          <div class="thumbnail">
+            <img src="/img/holder.svg" alt="...">
+            <div class="caption">
+              <h3 class="text-uppercase">Project 5</h3>
+              <p>These are words to describe the project. blah</p>
+              <!-- split button -->
+              <div class="btn-group dropup">
+                <button type="button" class="btn btn-info">VIEW</button>
+                <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+                  <span class="caret"></span>
+                  <span class="sr-only">Toggle Dropdown</span>
+                </button>
+                <!-- Drop nav menu for section of portfolio item to open to -->
+                <ul class="dropdown-menu" role="menu">
+                  <li><a href="#">View Project</a></li>
+                  <li class="divider"></li>
+                  <li><a href="#">View Source Code</a></li>
+                </ul>
+              </div> <!-- end split button -->
+            </div>
+          </div>
+        </div>
+        <!-- 3 thumbnails per row when not on small screen -->
+        <div class="col-sm-4 col-md-4">
+          <div class="thumbnail">
+            <img src="/img/holder.svg" alt="...">
+            <div class="caption">
+              <h3 class="text-uppercase">Project 6</h3>
+              <p>These are words to describe the project. blah</p>
+              <!-- split button -->
+              <div class="btn-group dropup box-shadow">
+                <button type="button" class="btn btn-info">VIEW</button>
+                <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+                  <span class="caret"></span>
+                  <span class="sr-only">Toggle Dropdown</span>
+                </button>
+                <!-- Drop nav menu for section of portfolio item to open to -->
+                <ul class="dropdown-menu" role="menu">
+                  <li><a href="#">View Project</a></li>
+                  <li class="divider"></li>
+                  <li><a href="#">View Source Code</a></li>
+                </ul>
+              </div> <!-- end split button -->
+            </div>
+          </div>
+        </div>
+      </div><!-- End 2nd row of portfolio thumbnails-->
+    </div><!-- End Page Content -->
+  </div><!-- End Page Wrap -->
+  <!-- jQuery 2.1.1 -->
+  <script src="/bootstrap/js/jquery2.1.1.js"></script>
+  <!-- Bootstrap JS -->
+  <script src="/bootstrap/js/bootstrap.min.js"></script>  
+  <!-- Custom JS -->
+  <script src="/js/custom.js"></script>
 </body>
 </html>
