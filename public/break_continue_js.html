@@ -1,0 +1,25 @@
+<html>
+<head>
+    <title>Break Continue JS</title>
+</head>
+<body>
+    <script>
+        // Generate a random number. If the number is even, regenerate a new one.
+        do {
+            var random = Math.floor((Math.random()*50)+1);
+        }
+        while (random % 2 == 0);
+        console.log('Random odd number to skip is: ' + random);
+        // Count from 1 to 50.
+        for(var i = 1; i<=50; i++) {
+            // Skip printing the random number.
+            if (i == random) {
+                console.log('YIPES! Skipping number: ' + random);
+                continue;
+            }
+            console.log(i);
+        }
+        
+    </script>
+</body>
+</html>
