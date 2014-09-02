@@ -1,5 +1,3 @@
-
-
 /* Custom Helper Classes 
    ~~~~~~~~~~~~~~~~~~~~~ */
 
@@ -17,15 +15,13 @@
 /* Custom CSS 
    ~~~~~~~~~~ */
 
-
 body { 
-  background-color: rgb(213, 255, 252);
-}
-body {
+    background-color: rgb(213, 255, 252);
     padding-top: 75px;
     font-family: 'Fira Sans', sans-serif;
     font-weight: 300;
 }
+
 /* Wrapper, pushes down footer */
 #wrap {
   min-height: 100%;
@@ -53,15 +49,20 @@ nav.navbar {
 .navbar-default .navbar-nav>li>a:hover, 
 .navbar-default .navbar-nav>li>a:focus {
     background-color: #777777;
-} 
+}
+
 /* Navbar Hover and Active States */
 .navbar-nav>li>a:hover, 
 .navbar-nav>li.active>a {
     -webkit-border-radius: 20px;
     -moz-border-radius: 20px;
     border-radius: 20px;
-    padding: 5px 15px;
-    margin-top:10px;
+}
+
+/* Set to font to Fira Sans */
+.navbar-brand, 
+.page-header {
+    font-family: 'Fira Sans', sans-serif;
 }
 
 /* Set Icon Atts.  */
@@ -83,9 +84,27 @@ i:hover {
     color: #000;
 }
 
-/* Set to font to Fira Sans */
-.navbar-brand, 
-.page-header {
-    font-family: 'Fira Sans', sans-serif;
+
+/* Custom Styles for Thumbnails */
+.thumbnail {
+  -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.50), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+  -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.50), 0 0 40px rgba(0, 0, 0, 0.1) inset; 
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.50), 0 0 40px rgba(0, 0, 0, 0.1) inset; 
 }
 
+/* Style Button Text */
+button a, button a:hover, button a:link, button a:visited, button a:active {
+  color: #FFF;
+  text-decoration: none;
+}
+
+/* CUSTOM MEDIA QUERIES */
+@media screen and (min-width: 768px) {
+    /* Navbar Hover and Active States */
+    .navbar-nav>li>a,
+    .navbar-nav>li>a:hover, 
+    .navbar-nav>li.active>a {
+        margin-top: 10px;
+        padding: 5px 15px;
+    }
+}
