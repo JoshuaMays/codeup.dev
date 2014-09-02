@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Interaction JS</title>
+</head>
+<body>
+    <script>
+        do {
+            var userName = prompt("WHAT IS YOUR NAME, FOO?");
+        } 
+        while(userName == null || userName == "");
+        alert('Sup ' + userName + '?');
+        
+        var pizza = confirm('Yo, you like pizza?');
+        
+        if (pizza) {
+            alert('Aight, lemme break you off a slice, holmes.');
+        }
+        else {
+            alert('You know nothing of pizza.');
+        }
+    </script>
+</body>
+</html>
