@@ -5,9 +5,12 @@
 </head>
 <body>
     <script>
+        // Create array-nbow of colors
         var colors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
+        // Set color to a random color in the array.
         var color = colors[Math.floor(Math.random()*colors.length)];
-
+        
+        // Matche the color to its definition.
         switch (color) {
             case 'red':
                 console.log(color + ' is the color of a bloody lip.');
@@ -19,13 +22,14 @@
                 console.log(color + ' is the color of that really creepy guy from Sin City.');
                 break;
             case 'green':
-                console.log(color + ' is the color of a fruit that vitamin-c deficient sailors should really try to eat more often.');
+                console.log(color + ' is the color of seasickness.');
                 break;
             case 'blue':
                 console.log(color + ' is the color of the face of the man who didn\'t chew his food before swallowing.');
                 break;
+            // If the random color is indigo or violet.
             default:
-                console.log('Like John Snow, I know nothing of ' + color);
+                console.log('I don\'t think ' + color + ' is really a color. But I could be wrong. Though it\'s never happened before.');
                 break;
         }
     </script>
