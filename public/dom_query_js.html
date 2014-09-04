@@ -42,17 +42,16 @@
 
         // Loop through the listItems array
         for (var i = 0; i < listItems.length; i++) {
-            // change odd numbered list items to grey
+            // Change odd numbered list items to grey
             if (i % 2 == 0) {
                 listItems[i].style['color'] = 'grey';
             }
-            // change color to blue for list items with the data-dbid attribute of 1 
+            // Change color to blue for list items with the data-dbid attribute of 1 
             if (listItems[i].attributes['data-dbid'].value == 1) {
                 listItems[i].style['color'] = 'blue';
             }
         }
 
-        
         // Capture element with class name of sub-paragraph
         var subParagraphs = document.getElementsByClassName('sub-paragraph');
 
