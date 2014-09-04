@@ -5,12 +5,15 @@
 </head>
 <body>
     <script>
+
         do {
-            var userName = prompt("WHAT IS YOUR NAME, FOO?");
+            // Prompt user for their name.
+            var userName = prompt("Howdy. What's yer name pard'ner?");
         } 
-        while(userName == null || userName == "");
+        while(userName == null || userName == ""); // Make sure user typed something, or didn't click cancel.
         alert('Sup ' + userName + '?');
-        
+
+        // Confirm if user likes pizza.
         var pizza = confirm('Yo, you like pizza?');
         
         if (pizza) {
