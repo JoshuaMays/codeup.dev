@@ -4,7 +4,7 @@
     <title>DOM Queries</title>
 </head>
 <body>
-    <h1 id="main-header">Hello World!</h1>
+    <h1 id="mainHeader">Hello World!</h1>
     <ul>
         <li data-dbid="1">Item 1</li>
         <li data-dbid="2">Item 2</li>
@@ -12,8 +12,8 @@
         <li data-dbid="4">Item 4</li>
         <li data-dbid="5">Item 5</li>
     </ul>
-    <h2 id="sub-header">Hello Again.</h2>
-    <p class="sub-paragraph">
+    <h2 id="subHeader">Hello Again.</h2>
+    <p class="subParagraph">
         Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
         eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
         ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
@@ -22,41 +22,54 @@
         pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
         culpa qui officia deserunt mollit anim id est laborum.
     </p>
+    
+    <button id="mainHeaderButton">Change Header</button>
+    <button id="subHeaderButton">Change Sub Header</button>
+    <button id="listItemsButton">Change List Items</button>
+    <button id="subParagraphsButton">Change Paragraph</button>
 
     <script>
-
-        // Capture element with id of main-header
-        var mainHeader = document.getElementById('main-header');
-
-        // Change mainHeader's inner HTML
-        mainHeader.innerHTML = "JavaScript is Cool";
-        
-        // Capture element with id of sub-header 
-        var subHeader = document.getElementById('sub-header');
-
-        // Change color of subHeader to blue
-        subHeader.style['color'] = 'blue';
-        
-        // Capture all li elements in the document
+        // Capture elements to change and the buttons to capture events
+        var mainHeader = document.getElementById('mainHeader');
+        var mainHeaderButton = document.getElementById('mainHeaderButton');
+        var subHeader = document.getElementById('subHeader');
+        var subHeaderButton = document.getElementById('subHeaderButton');
         var listItems = document.getElementsByTagName('li');
+        var listItemsButton = document.getElementById('listItemsButton');
+        var subParagraphs = document.getElementsByClassName('subParagraph');
+        var subParagraphsButton = document.getElementById('subParagraphsButton');
+        
+        // When mainHeaderButton is clicked, change mainHeader's innerText
+        mainHeaderButton.addEventListener("click", function() {
+            mainHeader.innerText = "JavaScript is Cool"
+        });
 
-        // Loop through the listItems array
-        for (var i = 0; i < listItems.length; i++) {
-            // Change odd numbered list items to grey
-            if (i % 2 == 0) {
-                listItems[i].style['color'] = 'grey';
+        // When subHeaderButton is clicked, change subHeader's style
+        subHeaderButton.addEventListener("click", function() {
+            subHeader.style['color'] = 'blue';
+        });
+        
+        /* When listItemsButton is clicked, change odd list items to grey
+           Also, change list items with data-dbid attribute: 1 to blue.   */
+        listItemsButton.addEventListener("click", function() {
+            // Loop through the listItems array
+            for (var i = 0; i < listItems.length; i++) {
+                // Change odd numbered list items to grey
+                if (i % 2 == 0) {
+                    listItems[i].style['color'] = 'grey';
+                }
+                // Change color to blue for list items with the data-dbid attribute of 1 
+                if (listItems[i].attributes['data-dbid'].value == 1) {
+                    listItems[i].style['color'] = 'blue';
+                }
             }
-            // Change color to blue for list items with the data-dbid attribute of 1 
-            if (listItems[i].attributes['data-dbid'].value == 1) {
-                listItems[i].style['color'] = 'blue';
-            }
-        }
-
-        // Capture element with class name of sub-paragraph
-        var subParagraphs = document.getElementsByClassName('sub-paragraph');
-
-        // Change inner text of first element in subParagraph array
-        subParagraphs[0].innerText = "Mission Accomplished!";
+        });
+        
+        // When subParagraphsButton is clicked, change innerText.
+        subParagraphsButton.addEventListener("click", function() {
+            // Change inner text of first element in subParagraph array
+            subParagraphs[0].innerText = "Mission Accomplished!";
+        });
     </script>
 </body>
 </html>
