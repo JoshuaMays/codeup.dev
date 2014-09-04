@@ -1,11 +1,10 @@
-// todo:
-// Copy the array of planets you created in the last lesson.
+// Create an array of the planets of the solar system.
 var planets = ['Mercury', 'Venus', 'Earth', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune'];
 
-// todo: Join the planets array with pipes (|) to create a variable named 'planetsAsString'.
+// Convert array of planets into string.
 var planetsAsString = planets.join(' | ');
 console.log(planetsAsString);
 
-// todo: Split the 'planetsAsString' variable by pipes (|) to create a variable named 'planetsAsArray'.
+// Convert string of planets back into an array.
 var planetsAsArray = planetsAsString.split(' | ');
 console.log(planetsAsArray);
