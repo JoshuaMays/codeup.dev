@@ -5,21 +5,23 @@
 </head>
 <body>
     <script>
-        // Wrap JS in Immediately-Invoked Function Expression or Anonymous function.
+        // Wrap JS in Immediately-Invoked Function Expression.
         (function () {
             
             var myNameIs = 'Josh';
             var random = Math.floor((Math.random()*100)+1);
-            
+            // Function logs a hello from the name argument.
             function sayHello(name) {
                 console.log(name + ': Hello.');
             }
             
-            sayHello(myNameIs);
-            
+            // Function checks if the random number is odd and describes the number based on the test.
             function isOdd(number) {
                 (number % 2 == 0) ? console.log('The number is ' + number + '. It is even.') : console.log('The number is ' + number + '. It is odd.');
             }
+            
+            sayHello(myNameIs);
+            
             isOdd(random);
         })();
     </script>
