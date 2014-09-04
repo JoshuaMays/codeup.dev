@@ -5,11 +5,14 @@
 </head>
 <body>
     <script>
+        // Create an array of rainbow colors
         var colors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
+        // Set color to a random key of the colors array.
         var color = colors[Math.floor(Math.random()*colors.length)];
-
+        // Define favorite color.
         var favorite = 'violet';
-
+        
+        // Check which of the colors the random color matches
         if (color == 'red') {
             console.log(color + ' is the color of a bloody lip.');
         } else if (color == 'orange') {
@@ -17,13 +20,14 @@
         } else if (color == 'yellow') {
             console.log(color + ' is the color of that really creepy guy from Sin City.');
         } else if (color == 'green') {
-            console.log(color + ' is the color of a fruit that vitamin-c deficient sailors should really try to eat more often.');
+            console.log(color + ' is the color of seasickness.');
         } else if (color == 'blue') {
             console.log(color + ' is the color of the face of the man who didn\'t chew his food before swallowing.');
         } else {
-            console.log(color + ': I do not know anything by that color.');
+            console.log(color + ': man, that a\'nt no color.');
         }
-
+        
+        // Check if the random color matched the favorite color. 
         var match = (color == favorite) ? console.log('OH YEAH, MATCH!') : console.log('No match. Like a better color.');
     </script>
 </body>
