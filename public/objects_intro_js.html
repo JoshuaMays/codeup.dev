@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Objects Intro JS</title>
+</head>
+<body>
+    <script>
+        // Create person object with firstName and lastName properties (set to your first and last name).
+        var person = {};
+        person.firstName = 'Joshua';
+        person.lastName = 'Mays';
+
+        // Add a say hello method to the person object that alerts hello using the firstName and lastName properties.
+        person.sayHello = function () {
+            alert(this.firstName + ' ' + this.lastName + ' says hello!');
+        }
+
+        // Say hello from the person object.
+        person.sayHello();
+    </script>
+</body>
+</html>
