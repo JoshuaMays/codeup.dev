@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Objects JSON JS</title>
+</head>
+<body>
+    <script>
+        var books = [
+            {
+                "title": "Elmer Gantry",
+                "author": {
+                    "firstName": "Sinclair",
+                    "lastName": "Lewis"
+                }
+            },
+            {
+                "title": "Metamorphoses",
+                "author": {
+                    "firstName": "Publius Ovidius",
+                    "lastName": "Naso"
+                }
+            },
+            {
+                "title": "Catch-22",
+                "author": {
+                    "firstName": "Joseph",
+                    "lastName": "Heller"
+                }
+            },
+            {
+                "title": "Kohana 3.0 Beginner's Guide",
+                "author": {
+                    "firstName": "Jason",
+                    "lastName": "Straughan"
+                }
+            },
+            {
+                "title": "JavaScript: The Good Parts",
+                "author": {
+                    "firstName": "Douglas",
+                    "lastName": "Crockford"
+                }
+            }
+        ];
+
+        // log out the books array
+        console.log(books);
+
+        // Loop through the array of books using .forEach and print out the specified information about each one.
+        books.forEach(function(book, i, books) {
+            console.log("Book #" + (i+1));
+            console.log("Title: " + book.title);
+            console.log("Author: " + book.author.firstName + " " + book.author.lastName);
+            console.log("---");
+        });
+    </script>
+</body>
+</html>
