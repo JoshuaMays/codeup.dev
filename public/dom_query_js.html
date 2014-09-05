@@ -2,6 +2,17 @@
 <html>
 <head>
     <title>DOM Queries</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <style>
+        .blk {
+            color: #FFF;
+            background-color: #000;
+        }
+        .wht {
+            color: #000;
+            background-color: #FFF;
+        }
+    </style>
 </head>
 <body>
     <h1 id="mainHeader">Hello World!</h1>
@@ -23,10 +34,10 @@
         culpa qui officia deserunt mollit anim id est laborum.
     </p>
     
-    <button id="mainHeaderButton">Change Header</button>
-    <button id="subHeaderButton">Change Sub Header</button>
-    <button id="listItemsButton">Change List Items</button>
-    <button id="subParagraphsButton">Change Paragraph</button>
+    <button id="mainHeaderButton" class="blk">Change Header</button>
+    <button id="subHeaderButton" class="wht">Change Sub Header</button>
+    <button id="listItemsButton" class="blk">Change List Items</button>
+    <button id="subParagraphsButton" class="wht">Change Paragraph</button>
 
     <script>
         // Capture elements to change and the buttons to capture events
