@@ -7,17 +7,19 @@
     <script>
         var circle = {
             radius: 3,
+            area: '',
             getArea: function () {
+                // Area of a circle
                 return Math.PI * Math.pow(this.radius,2);
                 
             },
             logInfo: function (round) {
                 // if round is true, round the result to the nearest integer.
-                var area = this.getArea();
+                this.area = this.getArea();
                 if (round) {
-                    area = Math.round(area);
+                    this.area = Math.round(this.area);
                 }
-                console.log('Area of a circle with radius: ' + this.radius + ', is: ' + area);
+                console.log('Area of a circle with radius: ' + this.radius + ', is: ' + this.area);
             }
         };
 
