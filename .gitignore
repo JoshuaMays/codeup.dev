@@ -1,0 +1,11 @@
+!.gitignore
+.DS_Store
+public/img
+public/bootstrap
+font-awesome-4.2.0.textClipping
+fontawesome
+bootstrap.html
+test.html
+hide
+alphabet.js
+bubbles.js
