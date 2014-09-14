@@ -7,7 +7,6 @@
     <meta name="description" content="We list all kinds'a junk">
     <meta name="author" content="Joshua Mays">
     <title>Lister</title>
-
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
