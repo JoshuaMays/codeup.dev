@@ -1,7 +1,7 @@
 !.gitignore
 .DS_Store
-public/img
-public/bootstrap
+public/img/
+public/bootstrap/
 font-awesome-4.2.0.textClipping
 fontawesome
 bootstrap.html
