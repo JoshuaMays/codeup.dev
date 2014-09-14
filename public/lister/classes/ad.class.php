@@ -1,5 +1,6 @@
 <?php
 
+// CLASS DEFINITION FOR INDIVIDUAL AD OBJECTS
 class Ad {
     public $title = '';
     public $body = '';
@@ -16,6 +17,7 @@ class Ad {
         $this->email = $email;
         $this->img = $img;
     }
+    // METHOD TO RETURN AD OBJECT AS AN ARRAY
     public function adArray() {
         return [$this->title, $this->body, $this->listDate, $this->username, $this->email, $this->img];
     }

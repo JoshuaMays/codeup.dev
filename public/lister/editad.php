@@ -2,13 +2,14 @@
 require_once 'classes/ad_manager.class.php';
 require_once 'classes/ad.class.php';
 
+// CREATE AD MANAGER AND ADS OBJECTS
 $adManager = new AdManager();
 $ads = $adManager->showAds();
 
 $adID = $_GET['id'];
 $ad = $ads[$adID];
 
-// ALLOW USER TO UPLOAD A CSV FILE TO IMPORT CONTACTS INTO THE ADDRESS BOOK
+// ALLOW USER TO UPLOAD AN IMAGE TO THEIR AD
 if (count($_FILES) > 0 && $_FILES['fileUpload']['error'] == UPLOAD_ERR_OK) {
     // UPLOAD DIRECTORY PATH
     $uploadDir = '/vagrant/sites/codeup.dev/public/lister/img/';
