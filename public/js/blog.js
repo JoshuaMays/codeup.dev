@@ -26,6 +26,7 @@ var now = moment(),
         }
     ];
 
+// loop through posts-objects array, displaying each to the page.
 posts.forEach(function (post, index) {
     var postDiv = document.createElement('div');
     postDiv.setAttribute('class', 'blogPosts');
