@@ -1,3 +1,3 @@
 #Codeup Web Dev
 
-Repository for testing and completing codeup html, css, js, & php files.
+This repo holds web-based in-class exercises and homework covering HTML, CSS, JS & JavaScript.
