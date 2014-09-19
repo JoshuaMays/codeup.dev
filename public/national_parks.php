@@ -8,13 +8,16 @@ $offset = isset($_GET['offset']) ? intval($_GET['offset']) : 0;
 
 // FUNCTION TO RETURN ROWS OF PARK DATA FROM THE DATABASE
 function getParks($dbc, $offset) {
-    $query = "SELECT name, location, area_in_acres, date_established FROM national_parks LIMIT 4 OFFSET $offset";
-
-    return $dbc->query($query)->fetchAll(PDO::FETCH_ASSOC);
+    $query = "SELECT name, location, area_in_acres, date_established FROM national_parks LIMIT :limiter OFFSET :offsetter";
+    $prepStatement = $dbc->prepare($query);
+    $prepStatement->bindValue(':limiter', 4, PDO::PARAM_INT);
+    $prepStatement->bindValue(':offsetter', $offset, PDO::PARAM_INT);
+    $prepStatement->execute();
+    return $prepStatement->fetchAll(PDO::FETCH_ASSOC);
 }
 
 // CREATING ARRAY FROM SELECTED RECORD SET
-$stmt = getParks($dbc, $offset);
+$theParks = getParks($dbc, $offset);
 
 // ASSIGNING COUNT OF RECORDS IN TABLE TO A VARIABLE FOR PAGINATION LINKS
 $count = (int) $dbc->query('SELECT count(*) FROM national_parks')->fetchColumn();
@@ -38,7 +41,7 @@ $count = (int) $dbc->query('SELECT count(*) FROM national_parks')->fetchColumn()
                 <th>Area (acres)</th>
                 <th>Date Established</th>
                 <!-- LOOP THROUGH THE SELECTED RECORDS TO DISPLAY PARK INFO-->
-                <? foreach ($stmt as $parkInfo): ?>
+                <? foreach ($theParks as $parkInfo): ?>
                     <tr>
                         <td><?= $parkInfo['name']; ?></td>
                         <td><?= $parkInfo['location']; ?></td>
