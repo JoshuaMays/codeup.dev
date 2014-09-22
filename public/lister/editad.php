@@ -1,63 +1,31 @@
 <?
 require '../../adlisterconnect.php';
 
-require_once 'classes/ad.class.php';
+require_once 'inc/ad.class.php';
 
 // CREATE AD OBJECT FROM GET REQUESTED AD ID TO EDIT THE RECORD
 $adId = $_GET['id'];
 $ad = new Ad($dbc, $adId);
 
 // IF A FILE HAS BEEN SUCCESSFULLY UPLOADED TO THE FORM, MOVE IMAGE FILE
-// TO THE IMG FOLDER AND SAVE A WEB PATH
+// TO THE IMG FOLDER AND UPDATE THE IMG PATH
 if (count($_FILES) > 0 && $_FILES['fileUpload']['error'] == UPLOAD_ERR_OK) {
-    // UPLOAD DIRECTORY PATH
-    $uploadDir = '/vagrant/sites/codeup.dev/public/lister/img/';
-    $uploadFilename = basename($_FILES['fileUpload']['name']);
-    $savedFile = $uploadDir . $uploadFilename;
-    // MOVE TMP FILE TO UPLOADS DIRECTORY
-    move_uploaded_file($_FILES['fileUpload']['tmp_name'], $savedFile);
-
+    // CAPTURE WEB PATH FROM UPLOADED FILE
+    $ad->addImage($_FILES);
 }
  
 if (!empty($_POST)) {
-    
-    // SET UP USER INPUT FILTERS FOR INSERT AND UPDATE METHODS
-    $filters = array(
-        "title" => FILTER_SANITIZE_STRING,
-        "body" => FILTER_SANITIZE_STRING,
-        "contact_name" => FILTER_SANITIZE_STRING,
-        "contact_email" => FILTER_SANITIZE_EMAIL,
-        "postImage" => FILTER_SANITIZE_STRING
-    );
-    
-    // TRIM USER INPUT AND UPDATE POST ARRAY
-    foreach ($_POST as $key => $input) {
-        $_POST[$key] = trim($input);
-    }
-    
-    // CREATE A FILTERED ARRAY FROM POSTED AD
-    $filtered = filter_input_array(INPUT_POST, $filters);
-    
-    
-    // WHEN USER SUBMITS EDIT AD FORM, ASSIGN UPDATED FIELDS
-    // TO OBJECT PROPERTIES AND SAVE THE AD
-    $ad->title        = $filtered['title'];
-    $ad->body         = $filtered['body'];
-    $ad->contactName  = $filtered['contact_name'];
-    $ad->contactEmail = $filtered['contact_email'];
-    $ad->imagePath    = $filtered['postImage'];
+    // SANITIZE AND FILTER USER INPUT DATA
+    $ad->sanitize($_POST);
 
-    $ad->save();
-    
     // WHEN AD IS SAVED, RELOCATE USER TO AD VIEW PAGE
     header('location: view.php?id=' . $ad->id);
     exit;
 }
 
+require_once('header.php');
 
 ?>
-<? include 'header.php'; ?>
-
 <div class="container">
     <h2 class="text-center">Edit Your Ad</h2>
     <div class="row">
@@ -95,13 +63,7 @@ if (!empty($_POST)) {
                     <input type="email" value="<?= $ad->contactEmail; ?>" class="form-control" name="contact_email" id="postEmail" placeholder="janice.smithereens@email.com">
                 </div>
             </div>
-            <? // IF USER HAS SUCCESSFULLY UPLOADED A NEW IMAGE ASSIGN NEW IMAGE PATH TO FORM IMAGE FIELD ?>
-            <? if (count($_FILES) > 0 && $_FILES['fileUpload']['error'] == UPLOAD_ERR_OK):?>
-                <input type="hidden" name="postImage" value="<?= $uploadFilename; ?>">
-            <? // OR USE CURRENT IMAGE PATH ?>
-            <? else: ?>
-                <input type="hidden" name="postImage" value="<?= $ad->imagePath; ?>">
-            <? endif; ?>
+            <input type="hidden" name="image_path" value="<?= $ad->imagePath; ?>">
             <div class="form-group">
                 <div class="col-sm-10 col-sm-offset-2">
                     <a href="index.php" class="btn btn-default">Go Back</a>
