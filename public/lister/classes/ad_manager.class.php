@@ -1,42 +1,32 @@
 <?php
-require_once 'ad.class.php';
 
-// CLASS DEFINITION FOR AD MANAGER OBJECTS
+require_once('Ad.class.php');
+
 class AdManager {
-    public $filename = '';
-    
-    public function __construct($filename = 'data/ads.csv') {
-        $this->filename = $filename;
+
+    public $dbc;
+
+    // CONSTRUCTOR METHOD FOR AD MANAGER OBJECTS
+    public function __construct($dbc) {
+        $this->dbc = $dbc;
     }
-    // METHOD TO READ ADS FROM CSV DATASTORE
-    public function showAds() {
-        $handle = fopen($this->filename, 'r');
+
+    // METHOD FOR LOADING ALL THE ADS FOR DISPLAY
+    public function loadAds() {
+        // SELECT STATEMENT FOR RETURNING ALL OF THE IDS OF AD RECORDS
+        $adsStmt = $this->dbc->query('SELECT id FROM items');
+
+        // INITIALIZE EMPTY ARRAY TO RETURN AD OBJECTS
         $ads = [];
-        while (!feof($handle)) {
-            $row = fgetcsv($handle);
-            // BUILD AD OBJECTS AND PUSH ONTO AN ARRAY
-            if (!empty($row)) {
-                $advert = new Ad($row[0], $row[1], $row[2], $row[3], $row[4], $row[5]);
-                $ads[] = $advert;
-            }
+
+        // FETCH ROWS OF AD RECORDS FOR EACH ID PRESENT IN TABLE
+        while($row = $adsStmt->fetch(PDO::FETCH_ASSOC)) {
+            // CREATE AD OBJECT FOR EACH ROW OF AD PROPERTIES
+            $ad = new Ad($this->dbc, $row['id']);
+            // PUSH AD ONTO THE ADS ARRAY
+            $ads[] = $ad;
         }
-        fclose($handle);
+
         return $ads;
     }
-    
-    // METHOD TO WRITE ADS TO THE CSV DATASTORE
-    public function saveAds($ads) {
-        $handle = fopen($this->filename, 'w');
-        foreach ($ads as $ad) {
-            fputcsv($handle, $ad->adArray());
-        }
-        fclose($handle);
-    }
-    
-    // METHOD TO EDIT ADS
-    public function editAds() {
-        $ads = $this->showAds();
-        var_dump($ads);
-    }
-    
 }
