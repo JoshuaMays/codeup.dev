@@ -20,13 +20,30 @@ if (count($_FILES) > 0 && $_FILES['fileUpload']['error'] == UPLOAD_ERR_OK) {
 }
 
 if(!empty($_POST)) {
-    // CREATE AND POPULATE AD OBJECT WITH FORM DATA
+    // SET UP USER INPUT FILTERS FOR INSERT AND UPDATE METHODS
+    $filters = array(
+        "title" => FILTER_SANITIZE_SPECIAL_CHARS,
+        "body" => FILTER_SANITIZE_SPECIAL_CHARS,
+        "contact_name" => FILTER_SANITIZE_SPECIAL_CHARS,
+        "contact_email" => FILTER_SANITIZE_EMAIL,
+        "image_path" => FILTER_SANITIZE_SPECIAL_CHARS
+    );
+    
+    // TRIM USER INPUT AND UPDATE POST ARRAY
+    foreach ($_POST as $key => $input) {
+        $_POST[$key] = trim($input);
+    }
+    
+    // CREATE A FILTERED ARRAY FROM POSTED AD
+    $filtered = filter_input_array(INPUT_POST, $filters);
+    
+    // CREATE AND POPULATE AD OBJECT WITH FILTERED FORM DATA
     $ad = new Ad($dbc);
-    $ad->title        = $_POST['title'];
-    $ad->body         = $_POST['body'];
-    $ad->contactName  = $_POST['contact_name'];
-    $ad->contactEmail = $_POST['contact_email'];
-    $ad->imagePath    = $_POST['image_path'];
+    $ad->title        = $filtered['title'];
+    $ad->body         = $filtered['body'];
+    $ad->contactName  = $filtered['contact_name'];
+    $ad->contactEmail = $filtered['contact_email'];
+    $ad->imagePath    = $filtered['image_path'];
     $ad->save();
     
     // REDIRECT USER TO VIEW PAGE FOR AD JUST CREATED
