@@ -1,48 +1,51 @@
 <?
-require_once 'classes/ad_manager.class.php';
+require '../../adlisterconnect.php';
+
 require_once 'classes/ad.class.php';
 
-// CREATE AD MANAGER AND ADS OBJECTS
-$adManager = new AdManager();
-$ads = $adManager->showAds();
+// CREATE AD OBJECT FROM GET REQUESTED AD ID TO EDIT THE RECORD
+$adId = $_GET['id'];
+$ad = new Ad($dbc, $adId);
 
-$adID = $_GET['id'];
-$ad = $ads[$adID];
-
-// ALLOW USER TO UPLOAD AN IMAGE TO THEIR AD
+// IF A FILE HAS BEEN SUCCESSFULLY UPLOADED TO THE FORM, MOVE IMAGE FILE
+// TO THE IMG FOLDER AND SAVE A WEB PATH
 if (count($_FILES) > 0 && $_FILES['fileUpload']['error'] == UPLOAD_ERR_OK) {
     // UPLOAD DIRECTORY PATH
     $uploadDir = '/vagrant/sites/codeup.dev/public/lister/img/';
     $uploadFilename = basename($_FILES['fileUpload']['name']);
-    // UPLOADED PATH AND FILENAME
     $savedFile = $uploadDir . $uploadFilename;
+
     // MOVE TMP FILE TO UPLOADS DIRECTORY
     move_uploaded_file($_FILES['fileUpload']['tmp_name'], $savedFile);
-    $img = $uploadFilename;
+
+    // PATH THAT WILL BE INSERTED INTO DATABASE
+    $webPath = "img/" . $uploadFilename;
 }
+ 
+if (!empty($_POST)) {
+    // WHEN USER SUBMITS EDIT AD FORM, ASSIGN UPDATED FIELDS
+    // TO OBJECT PROPERTIES AND SAVE THE AD
+    $ad->title        = $_POST['title'];
+    $ad->body         = $_POST['body'];
+    $ad->contactName  = $_POST['contact_name'];
+    $ad->contactEmail = $_POST['contact_email'];
+    $ad->imagePath    = $_POST['postImage'];
 
-if(!empty($_POST)) {
-    $listedDate = date('D, d M Y H:i');
-    
-    $ad = new Ad($_POST['postTitle'], $_POST['postBody'], $listedDate, $_POST['postAuthor'], $_POST['postEmail'], $_POST['postImage']);
+    $ad->save();
 
-    $ads[$ad] = $ad;
-    
-    $adManager->saveAds($ads);
-    
-    header('location: view.php?id=' . (count($ads) - 1));
+    // WHEN AD IS SAVED, RELOCATE USER TO AD VIEW PAGE
+    header('location: view.php?id=' . $ad->id);
     exit;
 }
 
-var_dump($ad);
 
 ?>
 <? include 'header.php'; ?>
 
 <div class="container">
-    <h2 class="text-center">Edit Your Item</h2>
+    <h2 class="text-center">Edit Your Ad</h2>
     <div class="row">
-        <form method="POST" enctype="multipart/form-data" action="/lister/add.php" role="form" class="form-horizontal">
+        <form method="POST" enctype="multipart/form-data" action="/lister/editad.php?id=<?= $adId ?>" role="form" class="form-horizontal">
             <div class="form-group">
                 <label for="upload" class="col-sm-2 control-label">Image:</label>
                 <div class="col-sm-9">
@@ -51,33 +54,37 @@ var_dump($ad);
                 </div>
             </div>
         </form>
-        <form method="POST" action="/lister/add.php" role="form" class="form-horizontal">
+        <form method="POST" action="/lister/editad.php?id=<?= $adId ?>" role="form" class="form-horizontal">
             <div class="form-group">
-                <label for="postTitle" class="col-sm-2 control-label">Title:</label>
+                <label for="title" class="col-sm-2 control-label">Title:</label>
                 <div class="col-sm-9">
-                    <input type="text" value="<?= $ad->title; ?>" class="form-control" name="postTitle" id="postTitle" placeholder="Title">
+                    <input type="text" value="<?= $ad->title; ?>" class="form-control" name="title" id="title" placeholder="Title">
                 </div>
             </div>
             <div class="form-group">
-                <label for="postBody" class="col-sm-2 control-label">Body:</label>
+                <label for="body" class="col-sm-2 control-label">Body:</label>
                 <div class="col-sm-9">
-                    <textarea class="form-control" name="postBody" id="postBody" rows="10" placeholder="Describe the item that you're listing here. Be creative..."><?= $ad->body; ?></textarea>
+                    <textarea class="form-control" name="body" id="body" rows="10" placeholder="Describe the item that you're listing here. Be creative..."><?= $ad->body; ?></textarea>
                 </div>
             </div>
             <div class="form-group">
-                <label for="postAuthor" class="col-sm-2 control-label">Name:</label>
+                <label for="contact_name" class="col-sm-2 control-label">Name:</label>
                 <div class="col-sm-9">
-                    <input type="text" value="<?= $ad->username; ?>" class="form-control" name="postAuthor" id="postAuthor" placeholder="Janice Smithereens">
+                    <input type="text" value="<?= $ad->contactName; ?>" class="form-control" name="contact_name" id="postAuthor" placeholder="Janice Smithereens">
                 </div>
             </div>
             <div class="form-group">
                 <label for="postEmail" class="col-sm-2 control-label">Email:</label>
                 <div class="col-sm-9">
-                    <input type="email" value="<?= $ad->email; ?>" class="form-control" name="postEmail" id="postEmail" placeholder="janice.smithereens@email.com">
+                    <input type="email" value="<?= $ad->contactEmail; ?>" class="form-control" name="contact_email" id="postEmail" placeholder="janice.smithereens@email.com">
                 </div>
             </div>
+            <? // IF USER HAS SUCCESSFULLY UPLOADED A NEW IMAGE ASSIGN NEW IMAGE PATH TO FORM IMAGE FIELD ?>
             <? if (count($_FILES) > 0 && $_FILES['fileUpload']['error'] == UPLOAD_ERR_OK):?>
-                <input type="hidden" value="<?=$img ?>" name="postImage">
+                <input type="hidden" name="postImage" value="<?= $webPath; ?>">
+            <? // OR USE CURRENT IMAGE PATH ?>
+            <? else: ?>
+                <input type="hidden" name="postImage" value="<?= $ad->imagePath; ?>">
             <? endif; ?>
             <div class="form-group">
                 <div class="col-sm-10 col-sm-offset-2">
