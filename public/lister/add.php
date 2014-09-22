@@ -1,57 +1,28 @@
 <?php
-require '../../adlisterconnect.php';
-require_once 'classes/ad.class.php';
+require('../../adlisterconnect.php');
+require_once('inc/ad.class.php');
+
+$ad = new Ad($dbc);
 
 // IF A FILE HAS BEEN SUCCESSFULLY UPLOADED TO THE FORM, MOVE IMAGE FILE
 // TO THE IMG FOLDER AND SAVE A WEB PATH
 if (count($_FILES) > 0 && $_FILES['fileUpload']['error'] == UPLOAD_ERR_OK) {
-    // UPLOAD DIRECTORY PATH
-    $uploadDir = '/vagrant/sites/codeup.dev/public/lister/img/';
-    $uploadFilename = basename($_FILES['fileUpload']['name']);
-
-    // UPLOADED PATH AND FILENAME
-    $savedFile = $uploadDir . $uploadFilename;
-
-    // MOVE TMP FILE TO IMAGE DIRECTORY
-    move_uploaded_file($_FILES['fileUpload']['tmp_name'], $savedFile);
+    // CAPTURE WEB PATH FROM UPLOADED FILE
+    $webPath = $ad->addImage($_FILES);
 }
 
 if(!empty($_POST)) {
-    // SET UP USER INPUT FILTERS FOR INSERT AND UPDATE METHODS
-    $filters = array(
-        "title" => FILTER_SANITIZE_STRING,
-        "body" => FILTER_SANITIZE_STRING,
-        "contact_name" => FILTER_SANITIZE_STRING,
-        "contact_email" => FILTER_SANITIZE_EMAIL,
-        "image_path" => FILTER_SANITIZE_STRING
-    );
-    
-    // TRIM USER INPUT AND UPDATE POST ARRAY
-    foreach ($_POST as $key => $input) {
-        $_POST[$key] = trim($input);
-    }
-    
-    // CREATE A FILTERED ARRAY FROM POSTED AD
-    $filtered = filter_input_array(INPUT_POST, $filters);
-    
-    // CREATE AND POPULATE AD OBJECT WITH FILTERED FORM DATA
-    $ad = new Ad($dbc);
-    $ad->title        = $filtered['title'];
-    $ad->body         = $filtered['body'];
-    $ad->contactName  = $filtered['contact_name'];
-    $ad->contactEmail = $filtered['contact_email'];
-    $ad->imagePath    = $filtered['image_path'];
-    $ad->save();
+    // SANITIZE AND FILTER USER INPUT DATA
+    $ad->sanitize($_POST);
     
     // REDIRECT USER TO VIEW PAGE FOR AD JUST CREATED
     header('location: view.php?id=' . $ad->id);
     exit;
 }
 
+require_once('header.php');
+
 ?>
-
-<? include 'header.php'; ?>
-
 <div class="container">
     <h2 class="text-center">List an Item</h2>
     <div class="row">
@@ -79,6 +50,13 @@ if(!empty($_POST)) {
                     </div>
                 </div>
                 <div class="form-group">
+                    <label for="category" class="col-sm-2 control-label">Category</label>
+                    <div class="col-sm-9">
+                        <select type="selection" class="form-control" name="category" id="category">
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
                     <label for="body" class="col-sm-2 control-label">Body:</label>
                     <div class="col-sm-9">
                         <textarea class="form-control" name="body" id="body" rows="10" placeholder="Describe the item that you're listing here. Be creative..."></textarea>
@@ -98,7 +76,7 @@ if(!empty($_POST)) {
                 </div>
                 <? // HIDDEN INPUT TO POST UPLOADED IMAGE INFORMATION ?>
                 <? if (count($_FILES) > 0 && $_FILES['fileUpload']['error'] == UPLOAD_ERR_OK):?>
-                    <input type="hidden" value="<?= $uploadFilename; ?>" name="image_path">
+                    <input type="hidden" value="<?= $webPath; ?>" name="image_path">
                 <? endif; ?>
                 <div class="form-group">
                     <div class="col-sm-10 col-sm-offset-2">
