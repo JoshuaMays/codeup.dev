@@ -14,19 +14,16 @@ if (count($_FILES) > 0 && $_FILES['fileUpload']['error'] == UPLOAD_ERR_OK) {
 
     // MOVE TMP FILE TO IMAGE DIRECTORY
     move_uploaded_file($_FILES['fileUpload']['tmp_name'], $savedFile);
-
-    // IMAGE PATH TO BE INSERTED INTO DATABASE
-    $webPath = "img/" . $uploadFilename;
 }
 
 if(!empty($_POST)) {
     // SET UP USER INPUT FILTERS FOR INSERT AND UPDATE METHODS
     $filters = array(
-        "title" => FILTER_SANITIZE_SPECIAL_CHARS,
-        "body" => FILTER_SANITIZE_SPECIAL_CHARS,
-        "contact_name" => FILTER_SANITIZE_SPECIAL_CHARS,
+        "title" => FILTER_SANITIZE_STRING,
+        "body" => FILTER_SANITIZE_STRING,
+        "contact_name" => FILTER_SANITIZE_STRING,
         "contact_email" => FILTER_SANITIZE_EMAIL,
-        "image_path" => FILTER_SANITIZE_SPECIAL_CHARS
+        "image_path" => FILTER_SANITIZE_STRING
     );
     
     // TRIM USER INPUT AND UPDATE POST ARRAY
@@ -101,7 +98,7 @@ if(!empty($_POST)) {
                 </div>
                 <? // HIDDEN INPUT TO POST UPLOADED IMAGE INFORMATION ?>
                 <? if (count($_FILES) > 0 && $_FILES['fileUpload']['error'] == UPLOAD_ERR_OK):?>
-                    <input type="hidden" value="<?= $webPath; ?>" name="image_path">
+                    <input type="hidden" value="<?= $uploadFilename; ?>" name="image_path">
                 <? endif; ?>
                 <div class="form-group">
                     <div class="col-sm-10 col-sm-offset-2">

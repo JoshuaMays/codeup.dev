@@ -14,25 +14,41 @@ if (count($_FILES) > 0 && $_FILES['fileUpload']['error'] == UPLOAD_ERR_OK) {
     $uploadDir = '/vagrant/sites/codeup.dev/public/lister/img/';
     $uploadFilename = basename($_FILES['fileUpload']['name']);
     $savedFile = $uploadDir . $uploadFilename;
-
     // MOVE TMP FILE TO UPLOADS DIRECTORY
     move_uploaded_file($_FILES['fileUpload']['tmp_name'], $savedFile);
 
-    // PATH THAT WILL BE INSERTED INTO DATABASE
-    $webPath = "img/" . $uploadFilename;
 }
  
 if (!empty($_POST)) {
+    
+    // SET UP USER INPUT FILTERS FOR INSERT AND UPDATE METHODS
+    $filters = array(
+        "title" => FILTER_SANITIZE_STRING,
+        "body" => FILTER_SANITIZE_STRING,
+        "contact_name" => FILTER_SANITIZE_STRING,
+        "contact_email" => FILTER_SANITIZE_EMAIL,
+        "postImage" => FILTER_SANITIZE_STRING
+    );
+    
+    // TRIM USER INPUT AND UPDATE POST ARRAY
+    foreach ($_POST as $key => $input) {
+        $_POST[$key] = trim($input);
+    }
+    
+    // CREATE A FILTERED ARRAY FROM POSTED AD
+    $filtered = filter_input_array(INPUT_POST, $filters);
+    
+    
     // WHEN USER SUBMITS EDIT AD FORM, ASSIGN UPDATED FIELDS
     // TO OBJECT PROPERTIES AND SAVE THE AD
-    $ad->title        = $_POST['title'];
-    $ad->body         = $_POST['body'];
-    $ad->contactName  = $_POST['contact_name'];
-    $ad->contactEmail = $_POST['contact_email'];
-    $ad->imagePath    = $_POST['postImage'];
+    $ad->title        = $filtered['title'];
+    $ad->body         = $filtered['body'];
+    $ad->contactName  = $filtered['contact_name'];
+    $ad->contactEmail = $filtered['contact_email'];
+    $ad->imagePath    = $filtered['postImage'];
 
     $ad->save();
-
+    
     // WHEN AD IS SAVED, RELOCATE USER TO AD VIEW PAGE
     header('location: view.php?id=' . $ad->id);
     exit;
@@ -81,7 +97,7 @@ if (!empty($_POST)) {
             </div>
             <? // IF USER HAS SUCCESSFULLY UPLOADED A NEW IMAGE ASSIGN NEW IMAGE PATH TO FORM IMAGE FIELD ?>
             <? if (count($_FILES) > 0 && $_FILES['fileUpload']['error'] == UPLOAD_ERR_OK):?>
-                <input type="hidden" name="postImage" value="<?= $webPath; ?>">
+                <input type="hidden" name="postImage" value="<?= $uploadFilename; ?>">
             <? // OR USE CURRENT IMAGE PATH ?>
             <? else: ?>
                 <input type="hidden" name="postImage" value="<?= $ad->imagePath; ?>">
