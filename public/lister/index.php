@@ -23,7 +23,7 @@ $ads = $adManager->loadAds();
                     <!-- ASSIGN CLEAR CLASS TO EVERY THIRD AD, SO ROWS OF THREE ADS LINE UP CORRECTLY -->
                     <div class="col-sm-4 col-md-4 <?= $adIndex % 3 == 0 ? 'clear' : ''; ?>">
                         <div class="thumbnail adListing">
-                            <a href="view.php?id=<?= $adContent->id; ?>"><img src="<?= $adContent->imagePath; ?>" alt="<?= $adContent->title ?> Photo"></a>
+                            <a href="view.php?id=<?= $adContent->id; ?>"><img src="<?= "img/" . $adContent->imagePath; ?>" alt="<?= $adContent->title ?> Photo"></a>
                             <div class="caption">
                                 <h3><a href="view.php?id=<?= $adContent->id; ?>"><?= $adContent->title; ?></a></h3>
                                 <p>Contact: <?= $adContent->contactName; ?></p>

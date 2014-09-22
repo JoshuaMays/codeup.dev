@@ -22,7 +22,7 @@ $ad = new Ad($dbc, $adID);
         <p class="listDate"><em>Posted: <?= $ad->createdAt->format('l, F jS, Y'); ?></em></p>
         <p>Contact: <a href="mailto:<?= $ad->contactEmail; ?>"><?= $ad->contactName; ?></a></p>
         <!-- CLICK AD IMAGE TO LOAD A MODAL IMAGE POPUP -->
-        <img id="adImage" src="<?= $ad->imagePath; ?>" class="img-responsive" alt="<?= $ad->title ?> Photo" data-toggle="modal" data-target="#modalImage">
+        <img id="adImage" src="<?= "img/" . $ad->imagePath; ?>" class="img-responsive" alt="<?= $ad->title ?> Photo" data-toggle="modal" data-target="#modalImage">
         <div class="modal fade" id="modalImage" tabindex="-1" role="dialog" aria-labelledby="modalImageLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -31,7 +31,7 @@ $ad = new Ad($dbc, $adID);
                         <h4 class="modal-title" id="modalImageLabel"><?= $ad->title; ?></h4>
                     </div>
                     <div class="modal-body">
-                        <img id="largerModalImage"src="<?= $ad->imagePath; ?>" class="img-responsive" alt="<?= $ad->title; ?>">
+                        <img id="largerModalImage"src="<?= "img/" . $ad->imagePath; ?>" class="img-responsive" alt="<?= $ad->title; ?>">
                     </div>
                 </div>
             </div>
