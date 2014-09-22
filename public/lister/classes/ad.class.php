@@ -11,7 +11,7 @@ class Ad {
     public $createdAt    = '';
     public $image_path   = '';
 
-    // CONSTRUCTOR FUNCTION FOR AD OBJECTS
+    // CONSTRUCTOR METHOD FOR AD OBJECTS
     public function __construct($dbc, $id = null) {
         $this->dbc = $dbc;
 
@@ -37,7 +37,7 @@ class Ad {
         }
     }
 
-    // FUNCTION TO CHOOSE BETWEEN INSERTING AND UPDATING AN AD
+    // METHOD TO CHOOSE BETWEEN INSERTING AND UPDATING AN AD
     // IF THE AD ID ALREADY EXISTS IN THE TABLE, UPDATE. IF NOT, INSERT.
     public function save() {
         if (isset($this->id)) {
@@ -47,7 +47,7 @@ class Ad {
         }
     }
 
-    // FUNCTION TO INSERT NEW AD OBJECT INTO THE DATABASE
+    // METHOD TO INSERT NEW AD OBJECT INTO THE DATABASE
     protected function insert() {
         // CREATE A TIMESTAMP FOR AD ON INSERT
         $this->createdAt = new DateTime();
