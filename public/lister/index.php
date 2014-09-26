@@ -1,14 +1,15 @@
 <?php
 
-require '../../adlisterconnect.php';
-require_once 'classes/ad_manager.class.php';
+require_once('../../adlisterconnect.php');
+require_once('inc/ad_manager.class.php');
 
 // CREATE AD MANAGER AND ADS ARRAY
 $adManager = new AdManager($dbc);
 $ads = $adManager->loadAds();
-?>
 
-<? include 'header.php'; ?>
+require_once('header.php');
+
+?>
 <div id="pageWrap">
     <div class="page-header">
         <div class="col-sm-8 col-sm-offset-2">
@@ -37,4 +38,4 @@ $ads = $adManager->loadAds();
     </div>
 </div>
 
-<? include 'footer.php'; ?>
+<? require_once('footer.php'); ?>
