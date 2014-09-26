@@ -1,15 +1,15 @@
 <?
 
-require '../../adlisterconnect.php';
-require_once 'classes/ad.class.php';
+require_once('../../adlisterconnect.php');
+require_once('inc/ad.class.php');
 
 // DISPLAY SELECTED AD
 $adID = $_GET['id'];
 $ad = new Ad($dbc, $adID);
 
-?>
+require_once('header.php');
 
-<? include 'header.php'; ?>
+?>
     <div class="container">
         <div class="jumbotron">
             <!-- DISPLAY AD TITLE AND BODY -->
@@ -35,6 +35,6 @@ $ad = new Ad($dbc, $adID);
                     </div>
                 </div>
             </div>
-        </div>
+        </div><!-- END #modalImage -->
     </div>
-<? include 'footer.php' ?>
+<? require_once('footer.php'); ?>
