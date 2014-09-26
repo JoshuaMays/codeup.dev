@@ -20,4 +20,4 @@
     <![endif]-->
   </head>
   <body role="document">
-    <?php include('navbar.php'); ?>
+    <? require_once('navbar.php'); ?>
