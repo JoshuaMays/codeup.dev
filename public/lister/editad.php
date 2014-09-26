@@ -1,7 +1,7 @@
-<?
-require '../../adlisterconnect.php';
+<?php
+require('../../adlisterconnect.php');
 
-require_once 'inc/ad.class.php';
+require_once('inc/ad.class.php');
 
 // CREATE AD OBJECT FROM GET REQUESTED AD ID TO EDIT THE RECORD
 $adId = $_GET['id'];
@@ -73,4 +73,4 @@ require_once('header.php');
         </form>
     </div>
 </div>
-<? include 'footer.php'; ?>
+<? require_once('footer.php'); ?>
