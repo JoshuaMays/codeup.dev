@@ -24,7 +24,7 @@ function addPark($dbc) {
 
     // INITIALIZE PREPARED INSERT STATEMENT FOR FORM ENTRIES
     $insertPark = $dbc->prepare($query);
-    
+
     // SET UP FILTERS FOR INPUT DATA
     $filters = array(
     "parkName" => FILTER_SANITIZE_SPECIAL_CHARS,
@@ -33,23 +33,23 @@ function addPark($dbc) {
     "parkDate" => array("filter" => FILTER_CALLBACK, "options" => "formatDate"),
     "parkDescription" => FILTER_SANITIZE_SPECIAL_CHARS
     );
-    
+
     // CREATE NEW PARK DATA ARRAY USING FILTERS
     $filtered = filter_input_array(INPUT_POST, $filters);
     
     foreach ($filtered as $key => $input) {
         if ($input == '') {
-            throw new Exception ("WHOA WHOA WHOA, YOU DIDN'T FILL OUT THE {$filtered['$key']} FIELD.");
+            throw new Exception ("WHOA WHOA WHOA, YOU DIDN'T FILL OUT THE FORM CORRECTLY.");
         }
     }
-    
+
     // BIND FORM DATA TO PREPARED STATEMENT VARIABLES
     $insertPark->bindValue(':name', $filtered['parkName'],PDO::PARAM_STR);
     $insertPark->bindValue(':location', $filtered['parkLocation'],PDO::PARAM_STR);
     $insertPark->bindValue(':area_in_acres', $filtered['parkArea'],PDO::PARAM_STR);
     $insertPark->bindValue(':date_established', $filtered['parkDate'],PDO::PARAM_STR);
     $insertPark->bindValue(':description', $filtered['parkDescription'],PDO::PARAM_STR);
-    
+
     // RUN PREPARED INSERT STATEMENT
     $insertPark->execute();
 }
@@ -65,22 +65,25 @@ function formatFloat($float) {
     return (float) str_replace(",", "", $float);
 }
 
-// CREATING ARRAY FROM SELECTED RECORD SET
-$theParks = getParks($dbc, $offset);
 
 // ASSIGNING COUNT OF RECORDS IN TABLE TO A VARIABLE FOR PAGINATION LINKS
 $count = (int) $dbc->query('SELECT count(*) FROM national_parks')->fetchColumn();
 
-if ($_POST) {
+if (isset($_POST['parkName']) && isset($_POST['parkLocation']) && isset($_POST['parkArea']) && isset($_POST['parkDate']) && isset($_POST['parkDescription'])) {
     try {
         addPark($dbc);
     } catch (Exception $e) {
-        
+        $error = $e->getMessage();
     }
-    
-    $theParks = getParks($dbc, $offset);
+
+    // CLEAR POST ARRAY AFTER PARK HAS BEEN SUBMITTED CORRECTLY
+    if(!isset($error)) {
+       $_POST = array();
+    }
 }
 
+// CREATING ARRAY FROM SELECTED RECORD SET
+$theParks = getParks($dbc, $offset);
 ?>
 
 <!DOCTYPE html>
@@ -91,10 +94,13 @@ if ($_POST) {
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 </head>
 <body>
+    <? if (isset($error)): ?>
+        <h1><?= $error; ?></h1>
+    <? endif; ?>
     <div id="displayParks" class="container">
         <div class="row">
             <h1>US National Parks</h1>
-            <table class="table table-striped">
+            <table id="parksList"class="table table-striped">
                 <th>Name</th>
                 <th>Location</th>
                 <th>Area (acres)</th>
@@ -110,7 +116,7 @@ if ($_POST) {
                         <td><?= $parkInfo['description']; ?></td>
                     </tr>
                 <? endforeach; ?>
-            </table>
+            </table><!-- END parksList -->
         </div>
         <!-- HIDE PREV BUTTON WHEN AT BEGINNING OF RECORDS -->
         <? if ($offset != 0): ?>
@@ -126,7 +132,7 @@ if ($_POST) {
         <div class="row">
             <h2>Add a Park</h2>
             <!-- FORM TO ALLOW USERS TO ADD PARKS TO THE DATABASE -->
-            <form role="form" method="POST" action="/national_parks.php?offset=<?= $offset; ?>">
+            <form id="inputParkForm"role="form" method="POST" action="/national_parks.php?offset=<?= $offset; ?>">
                 <div class="form-group">
                     <label for="parkName">Park Name</label>
                     <input type="text" class="form-control" id="parkName" name="parkName" placeholder="Park Name" value="<?= $_POST ? $_POST['parkName'] : "" ?>">
@@ -141,14 +147,14 @@ if ($_POST) {
                 </div>
                 <div class="form-group">
                     <label for="parkDate">Date Established</label>
-                    <input type="text" class="form-control" id="parkDate" name="parkDate" placeholder="YYYY-MM-DD" value="<?= $_POST ? $_POST['parkDate'] : "" ?>">
+                    <input type="date" class="form-control" id="parkDate" name="parkDate" placeholder="YYYY-MM-DD" value="<?= $_POST ? $_POST['parkDate'] : "" ?>">
                 </div>
                 <div class="form-group">
                     <label for="parkDescription">Description</label>
                     <textarea  class="form-control" id="parkDescription" name="parkDescription"><?= $_POST ? $_POST['parkDescription'] : "" ?></textarea>
                 </div>
                 <button type="submit" class="btn btn-success">Submit</button>
-            </form>
+            </form><!-- END inputParkForm -->
         </div>
     </div>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
