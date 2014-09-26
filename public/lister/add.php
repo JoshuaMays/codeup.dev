@@ -88,4 +88,4 @@ require_once('header.php');
         <? endif; ?>
     </div>
 </div>
-<? include 'footer.php'; ?>
+<? require_once('footer.php'); ?>
