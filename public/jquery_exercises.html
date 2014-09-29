@@ -10,12 +10,12 @@
 </head>
 <body>
 <div id="pageWrapper" class="orange">
-<h1 id="mainHeader" class="fancyText">IM A HEADER</h1>
-<p id="mainParagraph">And I'm a paragraph element.</p>
+<h1 id="mainHeader">IM A HEADER</h1>
+<p id="mainParagraph" class="codeup">And I'm a paragraph element.</p>
 
 <ul class="smallLists">
-    <li id="shouty" class="uppercase">Item One</li>
-    <li class="blue">Item Two</li>
+    <li id="shouty" class="codeup">Item One</li>
+    <li class="codeup">Item Two</li>
 </ul>
 
 </div>
@@ -23,8 +23,7 @@
 <script src="js/jquery-1.11.0.js"></script>
 <script>
 $(document).ready(function() {
-    var headerContents = $('#shouty').html();
-    alert(headerContents);
+    $('.codeup').css('border','1px solid red');
 });
 
 </script>
