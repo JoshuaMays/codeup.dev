@@ -12,6 +12,10 @@
 <div id="pageWrapper" class="orange">
 <h1 id="mainHeader">IM A HEADER</h1>
 <p id="mainParagraph" class="codeup">And I'm a paragraph element.</p>
+<p class="codeup">And I'm a paragraph element.</p>
+<p class="codeup">And I'm a paragraph element.</p>
+<p class="codeup">And I'm a paragraph element.</p>
+
 
 <ul class="smallLists">
     <li id="shouty" class="codeup">Item One</li>
@@ -22,12 +26,21 @@
 
 <script src="js/jquery-1.11.1.js"></script>
 <script>
-$(document).ready(function() {
+    $("h1").click(function() {
+        $(this).css('background-color','salmon');
+    });
     
-    $("li").css("font-size", "20px");
-    $("li, h1, p").css("background-color", "yellow");
+    $("p").dblclick(function() {
+        $(this).css('font-size','18px');
+    });
     
-}); 
+    $("li").hover(
+        function(){
+            $(this).css('color', 'red');
+        },
+        function(){
+            $(this).css('color', 'black');
+    });
 
 </script>
 </body>
