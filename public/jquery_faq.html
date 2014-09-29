@@ -1,0 +1,98 @@
+<html>
+<head>
+    <title>National Parks FAQ</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <style>
+        /* Hide all elements with class "invisible" */
+        .invisible { display: none; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2">
+                <h1>National Parks FAQ</h1>
+                <dl>
+                    <dt>1. <dfn>By "park" do you mean "parking lot"?</dfn></dt>
+                    <dd class="invisible">No. A national park is "an area of land that is owned 
+                        and protected by a national government because of its natural 
+                        beauty or its importance to history or science."<br>
+                        <cite><a href="http://www.merriam-webster.com/dictionary/national%20park">Merriam Webster</a></cite>
+                    </dd>
+                    <dt>2. <dfn>Say I'm really into a specific park, and would like to 
+                        purchase one. How may I go about this?</dfn></dt>
+                    <dd class="invisible">Currently, you cannot purchase a national park from the government. 
+                        But, give it ten years and we may have another response.
+                    </dd>
+                    <dt>3. <dfn>What if I told you there was oil under one said park?</dfn></dt>
+                    <dd class="invisible">Oh, well in that case, we might be able to work something out. You know, 
+                        under the table. wink wink.
+                    </dd>
+                    <dt>4. <dfn>Can I live in a national park?</dfn></dt>
+                    <dd class="invisible">No. Although some parks offer camping areas, these are reserved 
+                        for only temporary stays. You may not take up permanent residence.
+                    </dd>
+                    <dt>5. <dfn>I heard there are lots of animals in these "parks." Are they 
+                        in cages or do you let them roam around wild, causin' up a ruckus?</dfn></dt>
+                    <dd class="invisible">I think you're thinking of a "zoo." Have you ever heard of a wildlife preserve? 
+                        It's kind of like that but better. And the animals may be wild, but, for the most
+                        part, they are not dangerous. We offer literature and guidance at the parks' Visitor's 
+                        Offices on how to best avoid being eaten alive, or attacked and left for dead.
+                    </dd>
+                    <dt>6. <dfn>Does Smokey Bear help protect park visitors?</dfn></dt>
+                    <dd class="invisible">Smokey Bear is not real. He is a marketing tool to educate the public about the dangers 
+                        of forest fires and to help prevent wildfires. He's an animated character. And, I guess, 
+                        sometimes a guy in a mascot costume. Bears don't talk, or wear hats, or carry shovels.
+                    </dd>
+                    <dt>7. <dfn>Should I be worried about Yogi Bear stealing my picnic basket?</dfn></dt>
+                    <dd class="invisible">Really? Again, Yogi Bear is an animated character. He's not a real bear. He lives in a fictional 
+                        cartoon fantasy land, inside the magical color box in your living room. And just to nip this in the 
+                        bud--other famous bears that are not real: Boo-Boo Bear, Paddington Bear, and Winnie-the-Pooh. 
+                    </dd>
+                    <dt>8. <dfn>Can I wear a furry costume and jump out of the bushes and scare people?</dfn></dt>
+                    <dd class="invisible"> Please don't. Just don't. If we catch you doing this, not only will you be banned for life from
+                        the park in which you're being a nuisance, but you will be banned from all national parks. Forever. 
+                        Even if you die and are reincarnated, we will find you and ban your new self. Even if you are reincarnated
+                        as a wild animal, if you're reborn in a national park, we will find you and kick you out, forcing you to
+                        live your life as an animal on the run. Bouncing between suburban trashcan to suburban trashcan.
+                    </dd>
+                    <dt>9. <dfn>So are these national parks completely joyless areas?</dfn></dt>
+                    <dd class="invisible">Yes, if you consider spending time in some of the most naturally beautiful stretches of land in the known
+                        universe to be a joyless activity. Maybe this isn't really meant for you. Have you tried the travelling carnivals?
+                    </dd>
+                    <dt>10. <dfn>How do I become a park ranger?</dfn></dt>
+                    <dd class="invisible">If you're the person who has asked the previous nine questions, I don't know what a park ranger is. 
+                        Never heard of it. Are you talking about ranger in the sense of Aragorn from the Lord of the Rings?
+                        For everyone else: visit the national park services <a href="http://www.nps.gov/personnel">personnel</a> page
+                        for all information regarding joining the Nature Army.
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+<script src="js/jquery-1.11.1.js"></script>
+<script>
+    $(document).ready(function() {
+        // PREPEND AN ANCHOR LINK TO TOGGLE VISIBILITY OF ANSWERS
+        $("dl").prepend(" <a href='#' id='toggle' data-alt-text='Hide'>Show</a>");
+        // FIRE EVENT ON CLICK
+        $("#toggle").click(function(e) {
+            // HOLD VALUE OF data-alt-text
+            var newText = $("#toggle").data('alt-text');
+            // HOLD CURRENT HTML CONTENT
+            var currentText = $("#toggle").html();
+            // PREVENT DEFAULT ANCHOR BEHAVIOR
+            e.preventDefault();
+            // SWAP SHOW AND HIDE BETWEEN CONTENT AND data-alt-text
+            $("#toggle").data('alt-text', currentText);
+            $("#toggle").html(newText);
+            // TOGGLE VISIBILTY OF ALL DD ELEMENTS WITH CLASS invisible
+            $("dd").toggleClass("invisible");
+        });
+    });
+</script>
+</body>
+</html>
+
+<!-- $("dl").append("<a href='#' class='toggle'>Show</a>"); -->
