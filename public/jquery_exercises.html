@@ -1,0 +1,32 @@
+<html>
+<head>
+    <title>JQUERY SELECTORS</title>
+    <style>
+    .important {
+        text-align: center;
+    }
+    
+    </style>
+</head>
+<body>
+<div id="pageWrapper" class="orange">
+<h1 id="mainHeader" class="fancyText">IM A HEADER</h1>
+<p id="mainParagraph">And I'm a paragraph element.</p>
+
+<ul class="smallLists">
+    <li id="shouty" class="uppercase">Item One</li>
+    <li class="blue">Item Two</li>
+</ul>
+
+</div>
+
+<script src="js/jquery-1.11.0.js"></script>
+<script>
+$(document).ready(function() {
+    var headerContents = $('#shouty').html();
+    alert(headerContents);
+});
+
+</script>
+</body>
+</html>
