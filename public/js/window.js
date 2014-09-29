@@ -1,5 +1,9 @@
-// Initialize timeoutId as global var
+// INITIALIZE timeoutId AS GLOBAL VAR
 var timeoutId;
+
+// CALL AUTOSAVE FUNCTION ON KEYUP EVENT
+var textarea = $('#important').keyup(autosave);
+
 function save() {
             alert('Saved!');
         }
@@ -7,12 +11,10 @@ function save() {
 function autosave() {
     var timer = 5000;
     
-    // When multiple autosave() calls are made, clear the previous timeout
+    // WHEN MULTIPLE autosave() CALLS ARE MADE, CLEAR PREVIOUS TIMEOUT
     clearTimeout(timeoutId);
-    // Set a 5 second timeout function that calls save()
+    
+    // SET A 5 SECOND TIMEOUT FUNCTION THAT CALLS save()
     timeoutId = setTimeout(save, timer);
 }
-
-var textarea = document.getElementById('important');
-textarea.addEventListener('keyup', autosave, false);
 
