@@ -11,6 +11,7 @@ class Ad {
     public $contactEmail = '';
     public $createdAt    = '';
     public $image_path   = '';
+    protected $tags = [];
 
     // CONSTRUCTOR METHOD FOR AD OBJECTS
     public function __construct($dbc, $id = null) {
@@ -22,20 +23,31 @@ class Ad {
             $this->id = $id;
 
             // STATEMENT TO READ IN AD PROPERTIES FROM THE DATABASE
-            $selectStmt = $this->dbc->prepare('SELECT * FROM items WHERE id = ?');
+            $selectStmt = $this->dbc->prepare('SELECT * FROM ads WHERE id = ?');
+
             $selectStmt->execute([$this->id]);
 
             // COPY ASSOCIATIVE ARRAY OF PROPERTIES FROM DATABASE RECORD
             $row = $selectStmt->fetch(PDO::FETCH_ASSOC);
-
+            
+            // STATEMENT TO FIND TAGS ASSOCIATED WITH THE AD
+            $tagAssociation = 'SELECT id, tag FROM tags 
+                               WHERE id IN (SELECT tag_id FROM ad_tag WHERE ad_id = ?)';
+            
+            $tagAssociationStmt = $this->dbc->prepare($tagAssociation);
+            $tagAssociationStmt->execute([$this->id]);
+            
+            // COPY ASSOCIATIVE ARRAY OF TAGS FOR THE AD
+            $tagRow = $tagAssociationStmt->fetchAll(PDO::FETCH_KEY_PAIR);
+            
             // ASSIGN OBJECT PROPERTIES FROM FETCH ASSOC ARRAY
             $this->title        = $row['title'];
             $this->body         = $row['body'];
             $this->contactName  = $row['name'];
             $this->contactEmail = $row['email'];
             $this->createdAt    = new DateTime($row['created_at']);
-            $this->imagePath   = $row['image_path'];
-            
+            $this->imagePath    = $row['image_path'];
+            $this->tags         = $tagRow;
         }
     }
 
@@ -55,11 +67,15 @@ class Ad {
         $this->createdAt = new DateTime();
 
         // PREPARED INSERT SQL STATEMENT FOR NEW ADS
-        $insertSQL = 'INSERT INTO items (title, body, name, email, created_at, image_path)
+        $insertSQL = 'INSERT INTO ads (title, body, name, email, created_at, image_path)
                       VALUES (:title, :body, :name, :email, :created_at, :image_path)';
+                      
+        $tagInsertSQL = 'INSERT INTO ad_tag (ad_id, tag_id)
+                         VALUES (:ad_id, :tag_id)';
 
         $insertStmt = $this->dbc->prepare($insertSQL);
-
+        $tagInsertStmt = $this->dbc->prepare($tagInsertSQL);
+        
         // BIND AD OBJECT PROPERTIES TO PREPARED STATEMENT VARIABLES
         $insertStmt->bindValue(':title',      $this->title,                  PDO::PARAM_STR);
         $insertStmt->bindValue(':body',       $this->body,                   PDO::PARAM_STR);
@@ -68,14 +84,20 @@ class Ad {
         $insertStmt->bindValue(':created_at', $this->createdAt->format('c'), PDO::PARAM_STR);
         $insertStmt->bindValue(':image_path', $this->imagePath,              PDO::PARAM_STR);
         $insertStmt->execute();
-
+        
         // ASSIGN AD OBJECT FROM ID OF INSERTED RECORD FOR AD VIEW PAGE
         $this->id = $this->dbc->lastInsertId();
+        
+        foreach($this->tags as $tag) {
+            $tagInsertStmt->bindValue(':ad_id',  $this->id, PDO::PARAM_INT);
+            $tagInsertStmt->bindValue(':tag_id', $tag,      PDO::PARAM_INT);
+            $tagInsertStmt->execute();
+        }
     }
     
     protected function update() {
         // PREPARED UPDATE SQL STATEMENT FOR EDITING ADS
-        $updateSQL = 'UPDATE items
+        $updateSQL = 'UPDATE ads
                       SET title = :title, body = :body, name = :name, email = :email, image_path = :image_path
                       WHERE id = :id';
 
@@ -90,12 +112,12 @@ class Ad {
         $updateStmt->execute();
     }
     
-    protected function associateItemCat() {
-        $associateSQL = 'INSERT INTO item_category (item_id, category_id)
-                         VALUES (:item_id, :category_id)';
+    protected function associateAdCat() {
+        $associateSQL = 'INSERT INTO ad_category (ad_id, category_id)
+                         VALUES (:ad_id, :category_id)';
         $associateStmt = $this->dbc->prepare($associateSQL);
         
-        $associateStmt->bindValue(':item_id',     $this->id, PDO::PARAM_INT);
+        $associateStmt->bindValue(':ad_id',     $this->id, PDO::PARAM_INT);
         $associateStmt->bindValue(':category_id', $this->category_id, PDO::PARAM_INT);
         
         $associateStmt->execute();
@@ -108,12 +130,14 @@ class Ad {
             "body" => FILTER_SANITIZE_STRING,
             "contact_name" => FILTER_SANITIZE_STRING,
             "contact_email" => FILTER_SANITIZE_EMAIL,
-            "image_path" => FILTER_SANITIZE_STRING
+            "image_path" => FILTER_SANITIZE_URL
         );
 
         // TRIM USER INPUT AND UPDATE POST ARRAY
         foreach($array as $key => $input) {
-            $array[$key] = trim($input);
+            if(is_string($input)) {
+                $array[$key] = trim($input);
+            }
         }
 
         // CREATE A FILTERED ARRAY FROM POSTED AD
@@ -125,7 +149,7 @@ class Ad {
         $this->contactName  = $filtered['contact_name'];
         $this->contactEmail = $filtered['contact_email'];
         $this->imagePath    = $array['image_path'];
-
+        $this->tags         = array_merge($this->tags, $array['tagChecks']);
         $this->save();
     }
     
@@ -140,5 +164,10 @@ class Ad {
         // MOVE TMP FILE TO IMAGE DIRECTORY
         move_uploaded_file($files['fileUpload']['tmp_name'], $savedFile);
         $this->imagePath = $uploadFilename;
+        return $this->imagePath;
+    }
+    
+    public function showTags() {
+        return $this->tags;
     }
 }
