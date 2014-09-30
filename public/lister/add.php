@@ -1,7 +1,12 @@
 <?php
 require('../../adlisterconnect.php');
-require_once('inc/ad.class.php');
+require_once('inc/TagManager.class.php');
 
+// INITIALIZE TAG MANAGER OBJECT TO POPULATE TAG CHECKLIST IN FORM
+$tags = new TagManager($dbc);
+$tagList = $tags->loadTagCollection();
+
+// INITIALIZE AD OBJECT SO A NEW AD CAN BE CREATED
 $ad = new Ad($dbc);
 
 // IF A FILE HAS BEEN SUCCESSFULLY UPLOADED TO THE FORM, MOVE IMAGE FILE
@@ -19,6 +24,8 @@ if(!empty($_POST)) {
     header('location: view.php?id=' . $ad->id);
     exit;
 }
+
+
 
 require_once('header.php');
 
@@ -52,8 +59,10 @@ require_once('header.php');
                 <div class="form-group">
                     <label for="category" class="col-sm-2 control-label">Category</label>
                     <div class="col-sm-9">
-                        <select type="selection" class="form-control" name="category" id="category">
-                        </select>
+                        <? // LOOP THROUGH TAGLIST TO DISPLAY EACH TAG OPTION ?>
+                        <? foreach ($tagList as $key => $tag) :?>
+                            <input type="checkbox" id="<?= $tag->tag; ?>" class="tagChecks" name="tagChecks[]" value="<?= $tag->id; ?>"> <label for="<?= $tag->tag; ?>"><?= $tag->tag; ?></label>
+                    <? endforeach; ?>
                     </div>
                 </div>
                 <div class="form-group">
