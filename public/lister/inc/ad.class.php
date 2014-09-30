@@ -94,7 +94,8 @@ class Ad {
             $tagInsertStmt->execute();
         }
     }
-    
+
+    // METHOD FOR UPDATING AN AD'S PROPERTIES AND UPDATING THE RECORD IN THE DATABASE
     protected function update() {
         // PREPARED UPDATE SQL STATEMENT FOR EDITING ADS
         $updateSQL = 'UPDATE ads
@@ -111,18 +112,8 @@ class Ad {
         $updateStmt->bindValue(':id',         $this->id,           PDO::PARAM_INT);
         $updateStmt->execute();
     }
-    
-    protected function associateAdCat() {
-        $associateSQL = 'INSERT INTO ad_category (ad_id, category_id)
-                         VALUES (:ad_id, :category_id)';
-        $associateStmt = $this->dbc->prepare($associateSQL);
-        
-        $associateStmt->bindValue(':ad_id',     $this->id, PDO::PARAM_INT);
-        $associateStmt->bindValue(':category_id', $this->category_id, PDO::PARAM_INT);
-        
-        $associateStmt->execute();
-    }
 
+    // METHOD TO SANITIZE FORM INPUT AND PREPARE IT FOR INSERT OR UPDATE METHODS
     public function sanitize($array) {
         // SET UP USER INPUT FILTERS FOR INSERT AND UPDATE METHODS
         $filters = array(
@@ -152,7 +143,8 @@ class Ad {
         $this->tags         = array_merge($this->tags, $array['tagChecks']);
         $this->save();
     }
-    
+
+    // METHOD TO ADD AN IMAGE PATH TO THE AD RECORD
     public function addImage($files) {
         // UPLOAD DIRECTORY PATH
         $uploadDir = '/vagrant/sites/codeup.dev/public/lister/img/';
@@ -166,7 +158,8 @@ class Ad {
         $this->imagePath = $uploadFilename;
         return $this->imagePath;
     }
-    
+
+    // METHOD METHOD TO PROVIDE ACCESS TO TAGS ASSOCIATED WITH AN AD
     public function showTags() {
         return $this->tags;
     }
