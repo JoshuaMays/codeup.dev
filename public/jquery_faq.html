@@ -70,6 +70,39 @@
                 </dl>
             </div>
         </div>
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2 parkFacts">
+                <h3>Redwood National Park</h3>
+                <ul>
+                    <li>The oldest redwood trees in the universe live in this park.</li>
+                    <li>The majority of these trees are 300 million years old.</li>
+                    <li>Trees are actually the petrified remains of ancient giant tapeworms.</li>
+                    <li>These redwoods are direct siblings of the Ents of Middle Earth.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2 parkFacts">
+                <h3>Wind Cave National Park</h3>
+                <ul>
+                    <li>This cave is so-named because it smells mostly like farts.</li>
+                    <li>Ogres and Unicorns live deep inside the belly of this cave.</li>
+                    <li>Over a million explorers have lost their lives in search of Unicorn Horn Powder. They were eaten.</li>
+                    <li>Fourteen miles underground, there is a 250m deep pool of SpaghettiOs.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2 parkFacts">
+                <h3>Theodore Roosevelt National Park</h3>
+                <ul>
+                    <li>This park was the 26th, 35th, and 201st President of the United States of America.</li>
+                    <li>After serving three four-year terms, Theodore Roosevelt National Park retired to its current location in North Dakota.</li>
+                    <li>The park's official name is Theodore Roosevelt née Galactus National Park d'America.</li>
+                    <li>Each visitor to the park is given a pair of leather chaps. There is a choice between cow and alligator leather.</li>
+                </ul>
+            </div>
+        </div>
     </div>
 <script src="js/jquery-1.11.1.js"></script>
 <script>
@@ -89,6 +122,16 @@
             $("#toggle").html(newText);
             // TOGGLE VISIBILTY OF ALL DD ELEMENTS WITH CLASS invisible
             $("dd").toggleClass("invisible");
+        });
+
+        // HIDE PARENT UL WHEN LI IS CLICKED
+        $("li").click(function(e) {
+            $(this).parent().toggleClass("invisible");
+        });
+        
+        // CHANGE FIRST CHILD LI FONT-WEIGHT TO BOLD
+        $("ul").each(function(index) {
+            $(this).children().first().css('font-weight', 'bold');
         });
     });
 </script>
