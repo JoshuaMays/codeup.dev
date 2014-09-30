@@ -4,8 +4,16 @@ require_once('../../adlisterconnect.php');
 require_once('inc/ad.class.php');
 
 // DISPLAY SELECTED AD
-$adID = $_GET['id'];
-$ad = new Ad($dbc, $adID);
+if (isset($_GET['id'])) {
+    $adID = $_GET['id'];
+    $ad = new Ad($dbc, $adID);
+    $tags = $ad->showTags();
+}
+else {
+    throw new Exception("YO PICK AN AD, BRO");
+}
+
+// var_dump($ad->showTags());
 
 require_once('header.php');
 
@@ -21,6 +29,11 @@ require_once('header.php');
         <!-- POST DATE AND CONTACT INFO -->
         <p class="listDate"><em>Posted: <?= $ad->createdAt->format('l, F jS, Y'); ?></em></p>
         <p>Contact: <a href="mailto:<?= $ad->contactEmail; ?>"><?= $ad->contactName; ?></a></p>
+        <div id="tags">
+            <? foreach ($tags as $tag_id => $tag) : ?>
+                <a href="tag-show.php?tag=<?= $tag_id; ?> "><button class="btn btn-info btn-xs"><?= $tag; ?></button></a>
+            <? endforeach; ?>
+        </div>
         <!-- CLICK AD IMAGE TO LOAD A MODAL IMAGE POPUP -->
         <img id="adImage" src="<?= "img/" . $ad->imagePath; ?>" class="img-responsive" alt="<?= $ad->title ?> Photo" data-toggle="modal" data-target="#modalImage">
         <div class="modal fade" id="modalImage" tabindex="-1" role="dialog" aria-labelledby="modalImageLabel" aria-hidden="true">
