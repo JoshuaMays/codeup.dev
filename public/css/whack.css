@@ -1,0 +1,15 @@
+html {
+    cursor: url(/img/bus.png), auto;
+}
+
+body {
+    background-color: hotpink;
+}
+
+#img-wrap {
+    margin: auto;
+}
+
+img {
+    max-width: 150px;
+}
