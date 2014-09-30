@@ -1,0 +1,42 @@
+<html>
+<head>
+    <title>Guac-A-Mole</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: hotpink;
+            max-height: 100%;
+            cursor: url(img/bus.png), auto;
+        }
+
+        #img-wrap {
+            margin: auto;
+        }
+
+        img {
+            max-width: 150px;
+        }
+    </style>
+</head>
+<body>
+    <div id="page-wrap">
+        <div id="img-wrap">
+            <img id="mole" src="/img/bale.png" alt="worst-face">
+        </div>
+    </div>
+<!-- jQuery -->
+<script src="js/jquery-1.11.1.js"></script>
+<script>
+    $(document).ready(function() {
+        // FADE MOLE IN ON PAGE LOAD
+        $('#mole').hide().fadeIn(1500);
+
+        // FADE MOLE OUT ON CLICK
+        $('#mole').click(function(e){
+            $(this).fadeOut(1000);
+        })
+    });
+</script>
+</body>
+</html>
