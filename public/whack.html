@@ -1,23 +1,14 @@
-<html>
-<head>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Guac-A-Mole</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <style>
-        body {
-            background-color: hotpink;
-            max-height: 100%;
-            cursor: url(img/bus.png), auto;
-        }
-
-        #img-wrap {
-            margin: auto;
-        }
-
-        img {
-            max-width: 150px;
-        }
-    </style>
+    <link rel="stylesheet" href="/css/jquery-ui.min.css">
+    <link rel="stylesheet" href="/css/whack.css">
 </head>
 <body>
     <div id="page-wrap">
@@ -27,15 +18,16 @@
     </div>
 <!-- jQuery -->
 <script src="js/jquery-1.11.1.js"></script>
+<script src="js/jquery-ui.min.js"></script>
 <script>
     $(document).ready(function() {
         // FADE MOLE IN ON PAGE LOAD
-        $('#mole').hide().fadeIn(1500);
+        $('#mole').hide().slideDown(1500,'easeInBounce');
 
         // FADE MOLE OUT ON CLICK
         $('#mole').click(function(e){
-            $(this).fadeOut(1000);
-        })
+            $(this).hide('explode', 1000);
+        });
     });
 </script>
 </body>
