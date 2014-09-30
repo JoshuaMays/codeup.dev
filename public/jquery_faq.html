@@ -3,6 +3,7 @@
     <title>National Parks FAQ</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/jquery-ui.min.css">
 </head>
 <body>
     <div class="container">
@@ -68,6 +69,7 @@
         </div>
         <div class="row">
             <div class="col-sm-8 col-sm-offset-2 parkFacts">
+                <h2>True Facts of Factual Truths</h2>
                 <h3>Redwood National Park</h3>
                 <ul>
                     <li>The oldest redwood trees in the universe live in this park.</li>
@@ -101,6 +103,7 @@
         </div>
     </div>
 <script src="js/jquery-1.11.1.js"></script>
+<script src="js/jquery-ui.min.js"></script>
 <script>
     $(document).ready(function() {
         // PREPEND AN ANCHOR LINK TO TOGGLE VISIBILITY OF ANSWERS
@@ -118,12 +121,12 @@
             $("#altText").data('alt-text', currentText);
             $("#altText").html(newText);
             // TOGGLE VISIBILTY OF ALL DD ELEMENTS WITH CLASS invisible
-            $("dd").toggle();
+            $("dd").slideToggle(3000, 'easeInCirc');
         });
 
         // HIDE PARENT UL WHEN LI IS CLICKED
-        $("li").click(function(e) {
-            $(this).parent().hide();
+        $("h3").click(function(e) {
+            $(this).siblings("ul").slideToggle(1500, 'easeInBounce');
         });
         
         // CHANGE FIRST CHILD LI FONT-WEIGHT TO BOLD
