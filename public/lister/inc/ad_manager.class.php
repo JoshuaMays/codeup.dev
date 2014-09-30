@@ -7,14 +7,14 @@ class AdManager {
     public $dbc;
 
     // CONSTRUCTOR METHOD FOR AD MANAGER OBJECTS
-    public function __construct($dbc) {
+    public function __construct($dbc, $tags = false) {
         $this->dbc = $dbc;
     }
 
     // METHOD FOR LOADING ALL THE ADS FOR DISPLAY
     public function loadAds() {
         // SELECT STATEMENT FOR RETURNING ALL OF THE IDS OF AD RECORDS
-        $adsStmt = $this->dbc->query('SELECT id FROM items');
+        $adsStmt = $this->dbc->query('SELECT id FROM ads');
 
         // INITIALIZE EMPTY ARRAY TO RETURN AD OBJECTS
         $ads = [];
@@ -29,9 +29,5 @@ class AdManager {
 
         return $ads;
     }
-    
-    // METHOD FOR SAVING ADS
-    public function saveAds() {
-        
-    }
+
 }
