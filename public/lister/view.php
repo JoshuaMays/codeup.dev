@@ -13,8 +13,6 @@ else {
     throw new Exception("YO PICK AN AD, BRO");
 }
 
-// var_dump($ad->showTags());
-
 require_once('header.php');
 
 ?>
