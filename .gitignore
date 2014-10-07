@@ -1,7 +1,8 @@
 !.gitignore
 .DS_Store
 public/img/
-public/bootstrap/
+*bootstrap*
+*jquery*
 font-awesome-4.2.0.textClipping
 fontawesome
 bootstrap.html
@@ -13,3 +14,5 @@ public/data/
 public/chrislist/
 public/lister/img/
 data/
+*moment.js
+*dbconnect*
